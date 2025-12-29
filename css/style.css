@@ -1,0 +1,308 @@
+/* Import Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700&display=swap');
+
+:root {
+  /* Font sizes - Display */
+  --hx-display-size-lg: 3.5rem;
+  --hx-display-size-md: 2.5rem;
+  --hx-display-size-sm: 2rem;
+  --hx-display-size-xs: 1.5rem;
+
+  /* Font sizes - Body */
+  --hx-body-size-xl: 1.25rem;
+  --hx-body-size-lg: 1.125rem;
+  --hx-body-size-md: 1rem;
+  --hx-body-size-sm: 0.875rem;
+  --hx-body-size-xs: 0.75rem;
+
+  /* Font weights */
+  --hx-text-weight-bold: 700;
+  --hx-text-weight-semibold: 600;
+  --hx-text-weight-medium: 500;
+  --hx-text-weight-regular: 400;
+  --hx-text-weight-light: 300;
+
+  /* Line heights - Display */
+  --hx-line-height-display-lg: 1.2;
+  --hx-line-height-display-md: 1.25;
+  --hx-line-height-display-sm: 1.3;
+  --hx-line-height-display-xs: 1.35;
+
+  /* Line heights - Body */
+  --hx-line-height-body-xl: 1.75;
+  --hx-line-height-body-lg: 1.7;
+  --hx-line-height-body-md: 1.6;
+  --hx-line-height-body-sm: 1.5;
+  --hx-line-height-body-xs: 1.4;
+  --hx-line-height-body-base: 1.5;
+
+  /* Border radius */
+  --hx-border-radius-300: 1.5rem;
+  --hx-border-radius-200: 1rem;
+  --hx-border-radius-150: 0.75rem;
+  --hx-border-radius-100: 0.5rem;
+  --hx-border-radius-050: 0.25rem;
+  --hx-border-radius-badge: 624.9375rem;
+  --hx-border-radius-circle: 50%;
+
+  /* Spacing */
+  --hx-space-xxlg: 4rem;
+  --hx-space-xlg: 3rem;
+  --hx-space-lg: 2rem;
+  --hx-space-xxbig: 1.5rem;
+  --hx-space-xbig: 1.25rem;
+  --hx-space-big: 1rem;
+  --hx-space-md: 0.75rem;
+  --hx-space-sm: 0.5rem;
+  --hx-space-xsm-2: 0.375rem;
+  --hx-space-xsm-1: 0.25rem;
+  --hx-space-xxs-2: 0.125rem;
+  --hx-space-xxs-1: 0.0625rem;
+
+  /* Background colors */
+  --hx-color-background-default: #ffffff;
+  --hx-color-surface-default: #f9fafb;
+  --hx-color-surface-raised: #ffffff;
+  --hx-color-surface-light: #f3f4f6;
+  --hx-color-surface-lighter: #e5e7eb;
+  --hx-color-surface-lightest: #f9fafb;
+  --hx-color-surface-strongest: #111827;
+
+  /* Primary colors */
+  --hx-color-primary-stronger: #1e3a8a;
+  --hx-color-primary-strong: #2563eb;
+  --hx-color-primary-default: #3b82f6;
+  --hx-color-primary-light: #60a5fa;
+  --hx-color-primary-lighter: #93c5fd;
+  --hx-color-primary-lightest: #dbeafe;
+  --hx-color-primary-muted: #eff6ff;
+
+  /* Success colors */
+  --hx-color-success-lighter: #d1fae5;
+  --hx-color-success-lightest: #ecfdf5;
+
+  /* Warning colors */
+  --hx-color-warning-lighter: #fef3c7;
+  --hx-color-warning-lightest: #fffbeb;
+
+  /* Danger colors */
+  --hx-color-danger-stronger: #991b1b;
+  --hx-color-danger-strong: #dc2626;
+  --hx-color-danger-default: #ef4444;
+  --hx-color-danger-light: #f87171;
+  --hx-color-danger-lighter: #fca5a5;
+  --hx-color-danger-lightest: #fee2e2;
+  --hx-color-danger-muted: #fef2f2;
+
+  /* Text colors */
+  --hx-text-color-strong: #111827;
+  --hx-text-color-default: #374151;
+  --hx-text-color-light: #6b7280;
+  --hx-text-color-lighter: #9ca3af;
+  --hx-text-color-lightest: #d1d5db;
+  --hx-text-color-muted: #e5e7eb;
+  --hx-text-color-white: #ffffff;
+
+  /* Text colors - Primary */
+  --hx-text-color-primary-stronger: #1e3a8a;
+  --hx-text-color-primary-strong: #2563eb;
+  --hx-text-color-primary-default: #3b82f6;
+  --hx-text-color-primary-light: #60a5fa;
+  --hx-text-color-primary-lighter: #93c5fd;
+
+  /* Text colors - Danger */
+  --hx-text-color-danger-strong: #dc2626;
+  --hx-text-color-danger-default: #ef4444;
+  --hx-text-color-danger-light: #f87171;
+  --hx-text-color-danger-lighter: #fca5a5;
+
+  /* Text colors - Success */
+  --hx-text-color-success-default: #10b981;
+
+  /* Text colors - Warning */
+  --hx-text-color-warning-default: #f59e0b;
+
+  /* Border colors */
+  --hx-border-color-strong: #374151;
+  --hx-border-color-default: #d1d5db;
+  --hx-border-color-light: #e5e7eb;
+  --hx-border-color-muted: #f3f4f6;
+
+  /* Border colors - Primary */
+  --hx-border-color-primary-stronger: #1e3a8a;
+  --hx-border-color-primary-strong: #2563eb;
+  --hx-border-color-primary-default: #3b82f6;
+  --hx-border-color-primary-lighter: #93c5fd;
+  --hx-border-color-primary-lightest: #dbeafe;
+
+  /* Icon colors */
+  --hx-icon-color-strong: #111827;
+  --hx-icon-color-default: #6b7280;
+  --hx-icon-color-light: #9ca3af;
+  --hx-icon-color-lighter: #d1d5db;
+  --hx-icon-color-white: #ffffff;
+
+  /* Company colors */
+  --hx-color-company-primary: #6366f1;
+  --hx-color-company-primary-strong: #4f46e5;
+  --hx-color-company-primary-light: #818cf8;
+}
+
+/* Apply Inter font globally */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Custom utility classes using CSS variables */
+.text-d-lg {
+  font-size: var(--hx-display-size-lg);
+  line-height: var(--hx-line-height-display-lg);
+}
+
+.text-d-md {
+  font-size: var(--hx-display-size-md);
+  line-height: var(--hx-line-height-display-md);
+}
+
+.text-d-sm {
+  font-size: var(--hx-display-size-sm);
+  line-height: var(--hx-line-height-display-sm);
+}
+
+.text-d-xs {
+  font-size: var(--hx-display-size-xs);
+  line-height: var(--hx-line-height-display-xs);
+}
+
+.text-b-xl {
+  font-size: var(--hx-body-size-xl);
+  line-height: var(--hx-line-height-body-xl);
+}
+
+.text-b-lg {
+  font-size: var(--hx-body-size-lg);
+  line-height: var(--hx-line-height-body-lg);
+}
+
+.text-b-md {
+  font-size: var(--hx-body-size-md);
+  line-height: var(--hx-line-height-body-md);
+}
+
+.text-b-sm {
+  font-size: var(--hx-body-size-sm);
+  line-height: var(--hx-line-height-body-sm);
+}
+
+.text-b-xs {
+  font-size: var(--hx-body-size-xs);
+  line-height: var(--hx-line-height-body-xs);
+}
+
+.bg-surface-default {
+  background-color: var(--hx-color-surface-default);
+}
+
+.bg-surface-raised {
+  background-color: var(--hx-color-surface-raised);
+}
+
+.bg-primary-default {
+  background-color: var(--hx-color-primary-default);
+}
+
+.bg-primary-light {
+  background-color: var(--hx-color-primary-light);
+}
+
+.bg-primary-lightest {
+  background-color: var(--hx-color-primary-lightest);
+}
+
+.text-primary-default {
+  color: var(--hx-text-color-primary-default);
+}
+
+.text-primary-strong {
+  color: var(--hx-text-color-primary-strong);
+}
+
+.text-default {
+  color: var(--hx-text-color-default);
+}
+
+.text-light {
+  color: var(--hx-text-color-light);
+}
+
+.text-danger-default {
+  color: var(--hx-text-color-danger-default);
+}
+
+.border-primary-default {
+  border-color: var(--hx-border-color-primary-default);
+}
+
+.border-default {
+  border-color: var(--hx-border-color-default);
+}
+
+.border-light {
+  border-color: var(--hx-border-color-light);
+}
+
+.rounded-100 {
+  border-radius: var(--hx-border-radius-100);
+}
+
+.rounded-150 {
+  border-radius: var(--hx-border-radius-150);
+}
+
+.rounded-200 {
+  border-radius: var(--hx-border-radius-200);
+}
+
+.rounded-300 {
+  border-radius: var(--hx-border-radius-300);
+}
+
+.p-xxlg {
+  padding: var(--hx-space-xxlg);
+}
+
+.p-xlg {
+  padding: var(--hx-space-xlg);
+}
+
+.p-lg {
+  padding: var(--hx-space-lg);
+}
+
+.p-big {
+  padding: var(--hx-space-big);
+}
+
+.p-md {
+  padding: var(--hx-space-md);
+}
+
+.p-sm {
+  padding: var(--hx-space-sm);
+}
+
+.gap-lg {
+  gap: var(--hx-space-lg);
+}
+
+.gap-big {
+  gap: var(--hx-space-big);
+}
+
+.gap-md {
+  gap: var(--hx-space-md);
+}
+
+.gap-sm {
+  gap: var(--hx-space-sm);
+}

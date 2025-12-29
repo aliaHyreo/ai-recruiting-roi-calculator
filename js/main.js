@@ -1,0 +1,480 @@
+let mainData;
+
+$(document).ready(function () {
+    globalThis.getMainData().then(function (data) {
+        console.log('mainData ready:', data);
+        mainData = data;
+        // use data safely here
+        getProjectedTalentPipelineValues($('#openPositionsPerYear').val());
+    });
+    $('#sourcedViaHyreoTalentNetwork').text($('#sourcedViaHyreoTalentNetworkInput').val());
+    $('#sourcedViaHyreoTalentNetworkInput').on('input', function () {
+        $('#sourcedViaHyreoTalentNetwork').text($(this).val());
+    });
+
+    $('#applicantsResumeMatching').text($('#applicantsResumeMatchingInput').val());
+    $('#applicantsResumeMatchingInput').on('input', function () {
+        $('#applicantsResumeMatching').text($(this).val());
+    });
+
+    $('#applicantsPreScreened').text($('#applicantsPreScreenedInput').val());
+    $('#applicantsPreScreenedInput').on('input', function () {
+        $('#applicantsPreScreened').text($(this).val());
+    });
+
+    $('#preScreenedCandidatesInterviewed').text($('#preScreenedCandidatesInterviewedInput').val());
+    $('#preScreenedCandidatesInterviewedInput').on('input', function () {
+        $('#preScreenedCandidatesInterviewed').text($(this).val());
+    });
+
+    $('#interviewRounds').text($('#interviewRoundsInput').val());
+    $('#interviewRoundsInput').on('input', function () {
+        $('#interviewRounds').text($(this).val());
+    });
+
+    $('#interviewedCandidatesOffered').text($('#interviewedCandidatesOfferedInput').val());
+    $('#interviewedCandidatesOfferedInput').on('input', function () {
+        $('#interviewedCandidatesOffered').text($(this).val());
+    });
+
+    $('#offerConfirmation').text($('#offerConfirmationInput').val());
+    $('#offerConfirmationInput').on('input', function () {
+        $('#offerConfirmation').text($(this).val());
+        mainData.offerConversion = $(this).val();
+        Calculations();
+    });
+});
+
+function roundDecimal(value, decimals = 2) {
+    let factor = Math.pow(10, decimals);
+    return Math.round((value + Number.EPSILON) * factor) / factor;
+}
+
+function humanRound(value) {
+    value = Number(value);
+
+    if (Number.isNaN(value)) return 0;
+
+    const integerPart = Math.trunc(value);
+    const decimalPart = value - integerPart;
+
+    const firstDecimalDigit = Math.floor(decimalPart * 10);
+
+    if (firstDecimalDigit >= 5) {
+        return integerPart + 1;
+    }
+
+    return integerPart;
+}
+
+function getProjectedTalentPipelineValues(value) {
+    mainData.openPositionsPerYear = value;
+    mainData.numberOfInterviews = Number($('#interviewRoundsInput').val());
+    $('#projectedTalentPipeline #hired').text(humanRound(mainData.openPositionsPerYear));
+
+    mainData.offeredCandidates = roundDecimal(mainData.openPositionsPerYear / ($('#offerConfirmationInput').val() / 100), 2);
+    $('#projectedTalentPipeline #offeredCandidates').text(humanRound(mainData.offeredCandidates));
+
+    mainData.shortlistedForInterviews = roundDecimal(mainData.offeredCandidates / ($('#interviewedCandidatesOfferedInput').val() / 100), 2);
+    $('#projectedTalentPipeline #shortlistedForInterviews').text(humanRound(mainData.shortlistedForInterviews));
+
+    mainData.prescreeningCompleted = roundDecimal(mainData.shortlistedForInterviews / ($('#preScreenedCandidatesInterviewedInput').val() / 100), 2);
+    $('#projectedTalentPipeline #prescreeningCompleted').text(humanRound(mainData.prescreeningCompleted));
+
+    mainData.applicants = roundDecimal(mainData.prescreeningCompleted / ($('#applicantsPreScreenedInput').val() / 100), 2);
+    $('#projectedTalentPipeline #applicants').text(humanRound(mainData.applicants));
+
+    mainData.resumeMatching = roundDecimal(mainData.applicants / ($('#applicantsResumeMatchingInput').val() / 100), 2);
+    $('#projectedTalentPipeline #resumeMatching').text(humanRound(mainData.resumeMatching));
+
+    mainData.hyreoSourcedProfiles = roundDecimal(mainData.applicants * ($('#sourcedViaHyreoTalentNetworkInput').val() / 100), 2);
+    $('#projectedTalentPipeline #hyreoSourcedProfiles').text(humanRound(mainData.hyreoSourcedProfiles));
+
+    Calculations();
+}
+
+$('#openPositionsPerYear').on('input', function () {
+    mainData.openPositionsPerYear = $(this).val();
+    getProjectedTalentPipelineValues(mainData.openPositionsPerYear);
+});
+
+$('#sourcedViaHyreoTalentNetworkInput').on('input', function () {
+    mainData.hyreoSourcedProfiles = roundDecimal(Number($('#projectedTalentPipeline #applicants').text()) * ($(this).val() / 100), 2);
+    $('#projectedTalentPipeline #hyreoSourcedProfiles').text(humanRound(mainData.hyreoSourcedProfiles));
+
+    Calculations();
+});
+
+$('#applicantsResumeMatchingInput').on('input', function () {
+    mainData.resumeMatching = roundDecimal(Number($('#projectedTalentPipeline #applicants').text()) / ($(this).val() / 100), 2);
+    $('#projectedTalentPipeline #resumeMatching').text(humanRound(mainData.resumeMatching));
+
+    Calculations();
+});
+
+$('#applicantsPreScreenedInput').on('input', function () {
+    mainData.applicants = roundDecimal(Number($('#projectedTalentPipeline #prescreeningCompleted').text()) / ($(this).val() / 100), 2);
+    $('#projectedTalentPipeline #applicants').text(humanRound(mainData.applicants));
+
+    mainData.hyreoSourcedProfiles = roundDecimal(mainData.applicants * ($('#sourcedViaHyreoTalentNetworkInput').val() / 100), 2);
+    $('#projectedTalentPipeline #hyreoSourcedProfiles').text(humanRound(mainData.hyreoSourcedProfiles));
+
+    mainData.resumeMatching = roundDecimal(mainData.applicants / ($('#applicantsResumeMatchingInput').val() / 100), 2);
+    $('#projectedTalentPipeline #resumeMatching').text(humanRound(mainData.resumeMatching));
+
+    Calculations();
+});
+
+$('#preScreenedCandidatesInterviewedInput').on('input', function () {
+    mainData.prescreeningCompleted = roundDecimal(Number($('#shortlistedForInterviews').text()) / ($(this).val() / 100), 2);
+    $('#projectedTalentPipeline #prescreeningCompleted').text(humanRound(mainData.prescreeningCompleted));
+
+    mainData.applicants = roundDecimal(mainData.prescreeningCompleted / ($('#applicantsPreScreenedInput').val() / 100), 2);
+    $('#projectedTalentPipeline #applicants').text(humanRound(mainData.applicants));
+
+    mainData.hyreoSourcedProfiles = roundDecimal(mainData.applicants * ($('#sourcedViaHyreoTalentNetworkInput').val() / 100), 2);
+    $('#projectedTalentPipeline #hyreoSourcedProfiles').text(humanRound(mainData.hyreoSourcedProfiles));
+
+    mainData.resumeMatching = roundDecimal(mainData.applicants / ($('#applicantsResumeMatchingInput').val() / 100), 2);
+    $('#projectedTalentPipeline #resumeMatching').text(humanRound(mainData.resumeMatching));
+
+    Calculations();
+});
+
+$('#interviewedCandidatesOfferedInput').on('input', function () {
+    mainData.shortlistedForInterviews = roundDecimal(Number($('#offeredCandidates').text()) / ($(this).val() / 100), 2);
+    $('#projectedTalentPipeline #shortlistedForInterviews').text(humanRound(mainData.shortlistedForInterviews));
+
+    mainData.prescreeningCompleted = roundDecimal(mainData.shortlistedForInterviews / ($('#preScreenedCandidatesInterviewedInput').val() / 100), 2);
+    $('#projectedTalentPipeline #prescreeningCompleted').text(humanRound(mainData.prescreeningCompleted));
+
+    mainData.applicants = roundDecimal(mainData.prescreeningCompleted / ($('#applicantsPreScreenedInput').val() / 100), 2);
+    $('#projectedTalentPipeline #applicants').text(humanRound(mainData.applicants));
+
+    mainData.hyreoSourcedProfiles = roundDecimal(mainData.applicants * ($('#sourcedViaHyreoTalentNetworkInput').val() / 100), 2);
+    $('#projectedTalentPipeline #hyreoSourcedProfiles').text(humanRound(mainData.hyreoSourcedProfiles));
+
+    mainData.resumeMatching = roundDecimal(mainData.applicants / ($('#applicantsResumeMatchingInput').val() / 100), 2);
+    $('#projectedTalentPipeline #resumeMatching').text(humanRound(mainData.resumeMatching));
+
+    Calculations();
+});
+
+$('#offerConfirmationInput').on('input', function () {
+    mainData.offeredCandidates = (Number($('#hired').text()) / ($(this).val() / 100));
+    $('#projectedTalentPipeline #offeredCandidates').text(humanRound(roundDecimal(mainData.offeredCandidates)));
+
+    mainData.shortlistedForInterviews = roundDecimal(mainData.offeredCandidates / ($(this).val() / 100), 2);
+    $('#projectedTalentPipeline #shortlistedForInterviews').text(humanRound(mainData.shortlistedForInterviews));
+
+    mainData.prescreeningCompleted = roundDecimal(mainData.shortlistedForInterviews / ($('#preScreenedCandidatesInterviewedInput').val() / 100), 2);
+    $('#projectedTalentPipeline #prescreeningCompleted').text(humanRound(mainData.prescreeningCompleted));
+
+    mainData.applicants = roundDecimal(mainData.prescreeningCompleted / ($('#applicantsPreScreenedInput').val() / 100), 2);
+    $('#projectedTalentPipeline #applicants').text(humanRound(mainData.applicants));
+
+    mainData.hyreoSourcedProfiles = roundDecimal(mainData.applicants * ($('#sourcedViaHyreoTalentNetworkInput').val() / 100), 2);
+    $('#projectedTalentPipeline #hyreoSourcedProfiles').text(humanRound(mainData.hyreoSourcedProfiles));
+
+    mainData.resumeMatching = roundDecimal(mainData.applicants / ($('#applicantsResumeMatchingInput').val() / 100), 2);
+    $('#projectedTalentPipeline #resumeMatching').text(humanRound(mainData.resumeMatching));
+
+    Calculations();
+});
+
+$('#hyreoTalentNetworkCheckBox').on('change', function () {
+    const isChecked = $(this).is(':checked');
+    mainData.checkboxHyreoTalentNetwork = isChecked;
+    Calculations();
+});
+
+$('#automatedResumeMatchingWithJdCheckBox').on('change', function () {
+    const isChecked = $(this).is(':checked');
+    mainData.checkboxAutomatedResumeMatchingWithJd = isChecked;
+    Calculations();
+});
+
+$('#preScreeningWithAiAgentsCheckBox').on('change', function () {
+    const isChecked = $(this).is(':checked');
+    mainData.checkboxPreScreeningWithAiAgents = isChecked;
+    Calculations();
+});
+
+$('#automatedInterviewSchedulerCheckBox').on('change', function () {
+    const isChecked = $(this).is(':checked');
+    mainData.checkboxAutomatedInterviewScheduler = isChecked;
+    Calculations();
+});
+
+$('#postOfferCandidatesEngagementCheckBox').on('change', function () {
+    const isChecked = $(this).is(':checked');
+    mainData.checkboxPostOfferCandidateEngagement = isChecked;
+    Calculations();
+});
+
+function Calculations() {
+    // ROI Automation
+    mainData.numberOfRecruiters = (mainData.openPositionsPerYear/25);
+    mainData.recruiterOrPanelistCostPerMinute = mainData.averageMonthlyRecruiterCost / ((mainData.annualPersonDays*8*60)/12);
+
+    // mainData.totalNumberOfOffersMade = mainData.offeredCandidates;
+    mainData.priceCreditsOffered = (mainData.pricePerModuleOrCvOffered*mainData.offeredCandidates);
+
+    // mainData.averageNoOfInterviewsScheduledIncludingMultipleRounds = (mainData.shortlistedForInterviews*mainData.numberOfInterviews);
+    mainData.priceCreditsInterviewed = (mainData.pricePerModuleOrCvInterviewed*(mainData.shortlistedForInterviews*mainData.numberOfInterviews));
+
+    // mainData.averageNoOfApplicantsShortlistedPerJobForPrescreening = mainData.prescreeningCompleted;
+    mainData.priceCreditsPreScreened = (mainData.pricePerModuleOrCvPreScreened*mainData.prescreeningCompleted);
+
+    // mainData.averageNumberOfMatchedApplicants = mainData.applicants;
+    mainData.priceCreditsMatched = (mainData.pricePerModuleOrCvMatched*mainData.applicants);
+
+    // mainData.averageNumberOfSourcedProfiles = mainData.hyreoSourcedProfiles;
+    mainData.priceCreditsSourced = (mainData.pricePerModuleOrCvSourced*mainData.hyreoSourcedProfiles);
+
+    if (mainData.checkboxHyreoTalentNetwork) {
+        mainData.externalTokensHyreoTalentNetworkVariableCost = roundDecimal(mainData.hyreoSourcedProfiles * mainData.costPerCandidateSourcing);
+        mainData.externalTokensHyreoTalentNetworkFinalCost = roundDecimal(mainData.externalTokensHyreoTalentNetworkVariableCost*(1+(mainData.externalTokensHyreoTalentNetworkPercentage/100)));
+        mainData.externalTokensWithJdVariableCost = roundDecimal(mainData.resumeMatching * mainData.costPerCandidateMatching);
+        mainData.externalTokensWithJdFinalCost = roundDecimal(mainData.externalTokensWithJdVariableCost*(1+(mainData.externalTokensWithJdPercentage/100)));
+        mainData.externalTokensPreScreeningWithAiAgentsVariableCost = roundDecimal(mainData.prescreeningCompleted * mainData.costPerCandidateScreening);
+        mainData.externalTokensPreScreeningWithAiAgentsFinalCost = roundDecimal(mainData.externalTokensPreScreeningWithAiAgentsVariableCost*(1+(mainData.externalTokensPreScreeningWithAiAgentsPercentage/100)));
+        mainData.externalTokensSchedulerVariableCost = roundDecimal(mainData.shortlistedForInterviews * mainData.costPerCandidateInterview);
+        mainData.externalTokensSchedulerFinalCost = roundDecimal(mainData.externalTokensSchedulerVariableCost*(1+(mainData.externalTokensSchedulerPercentage/100)));
+        mainData.externalTokensEngagementVariableCost = roundDecimal(mainData.offeredCandidates * mainData.costPerCandidatePostOffer);
+        mainData.externalTokensEngagementFinalCost = roundDecimal(mainData.externalTokensEngagementVariableCost*(1+(mainData.externalTokensEngagementPercentage/100)));
+        mainData.externalTokensVariableCostInrTotal = roundDecimal(mainData.externalTokensHyreoTalentNetworkVariableCost + mainData.externalTokensWithJdVariableCost + mainData.externalTokensPreScreeningWithAiAgentsVariableCost + mainData.externalTokensSchedulerVariableCost + mainData.externalTokensEngagementVariableCost);
+        mainData.externalTokensFinalCostInrTotal = roundDecimal(mainData.externalTokensHyreoTalentNetworkFinalCost + mainData.externalTokensWithJdFinalCost + mainData.externalTokensPreScreeningWithAiAgentsFinalCost + mainData.externalTokensSchedulerFinalCost + mainData.externalTokensEngagementFinalCost);
+        mainData.externalTokensFinalCostUsdTotal = roundDecimal(mainData.externalTokensFinalCostInrTotal / mainData.UsdConversion);
+        mainData.hyreoTokensSubscriptionCostInr = roundDecimal((mainData.hyreoTokensSubscriptionCostPercentage/100)*mainData.externalTokensVariableCostInrTotal);
+
+        // ROI Automation Sourcing
+        mainData.averageNumberOfSourcedProfiles = mainData.hyreoSourcedProfiles;
+        mainData.currentSourcingToolCostLikeNaukri = roundDecimal(mainData.averageNumberOfSourcedProfiles*mainData.naukriOrFounditSubscriptionCostPerResume);
+        mainData.currentSourcingTeamCost30PercentOfTeam = roundDecimal(mainData.numberOfRecruiters*0.3*mainData.averageMonthlyRecruiterCost*12);
+        mainData.manualEffortSavedHoursSourcing = roundDecimal(mainData.numberOfRecruiters*0.3*mainData.annualPersonDays*8);
+        mainData.costSavedSourcing = mainData.currentSourcingToolCostLikeNaukri+mainData.currentSourcingTeamCost30PercentOfTeam;
+        mainData.spendOnTheFeatureSourcing = mainData.externalTokensHyreoTalentNetworkFinalCost;
+        mainData.actualCostSavingsPostHyreoSourcing = roundDecimal(mainData.costSavedSourcing-mainData.spendOnTheFeatureSourcing);
+        // ROI Automation Sourcing
+    } else {
+        mainData.externalTokensHyreoTalenNetworkVariableCost = 0;
+        mainData.externalTokensHyreoTalentNetworkFinalCost = 0;
+        mainData.externalTokensWithJdVariableCost = 0;
+        mainData.externalTokensWithJdFinalCost = 0;
+        mainData.externalTokensPreScreeningWithAiAgentsVariableCost = 0;
+        mainData.externalTokensPreScreeningWithAiAgentsFinalCost = 0;
+        mainData.externalTokensSchedulerVariableCost = 0;
+        mainData.externalTokensSchedulerFinalCost = 0;
+        mainData.externalTokensEngagementVariableCost = 0;
+        mainData.externalTokensEngagementFinalCost = 0;
+        mainData.externalTokensVariableCostInrTotal = 0;
+        mainData.externalTokensFinalCostInrTotal = 0;
+        mainData.externalTokensFinalCostUsdTotal = 0;
+        mainData.hyreoTokensSubscriptionCostInr = 0;
+        mainData.averageNumberOfSourcedProfiles = 0;
+
+        mainData.currentSourcingToolCostLikeNaukri = 0;
+        mainData.currentSourcingTeamCost30PercentOfTeam = 0;
+        mainData.currentSourcingTeamCost30PercentOfTeam = 0;
+        mainData.manualEffortSavedHoursSourcing = 0;
+        mainData.costSavedSourcing = 0;
+        mainData.spendOnTheFeatureSourcing = 0;
+        mainData.actualCostSavingsPostHyreoSourcing = 0;
+    }
+
+    if (mainData.checkboxAutomatedResumeMatchingWithJd) {
+        // ROI Automation Matching
+        mainData.averageNumberOfMatchedApplicants = mainData.applicants;
+        mainData.manualEffortSavedHoursMatching = roundDecimal((mainData.timeSpendToMatchOrRankCvMins*mainData.averageNumberOfMatchedApplicants)/60);
+        mainData.costSavedMatching = roundDecimal(mainData.averageNumberOfMatchedApplicants*mainData.timeSpendToMatchOrRankCvMins*mainData.recruiterOrPanelistCostPerMinute);
+        mainData.spendOnTheFeatureMatching = mainData.priceCreditsMatched;
+        mainData.actualCostSavingsPostHyreoMatching = (mainData.costSavedMatching - mainData.spendOnTheFeatureMatching);
+
+        mainData.touchPointsMatchingAndOutreachEmailRecruiters = 0;
+        mainData.touchPointsMatchingAndOutreachEmailCandidates = mainData.resumeMatching*mainData.emailCandidateMatching;
+        mainData.touchPointsMatchingAndOutreachSms = mainData.resumeMatching*mainData.smsMatching;
+        mainData.touchPointsMatchingAndOutreachWhatsapp = mainData.resumeMatching*mainData.whatsappMatching;
+        mainData.touchPointsMatchingAndOutreachVoiceAgent = mainData.resumeMatching*mainData.voiceAgentMatching;
+        mainData.touchPointsMatchingAndOutreachChatAgent = mainData.resumeMatching*mainData.chatAgentMatching;
+    } else {
+        mainData.averageNumberOfMatchedApplicants = 0;
+        mainData.manualEffortSavedHoursMatching = 0;
+        mainData.costSavedMatching = 0;
+        mainData.spendOnTheFeatureMatching = 0;
+        mainData.actualCostSavingsPostHyreoMatching = 0;
+
+        mainData.touchPointsMatchingAndOutreachEmailRecruiters = 0;
+        mainData.touchPointsMatchingAndOutreachEmailCandidates = 0;
+        mainData.touchPointsMatchingAndOutreachSms = 0;
+        mainData.touchPointsMatchingAndOutreachWhatsapp = 0;
+        mainData.touchPointsMatchingAndOutreachVoiceAgent = 0;
+        mainData.touchPointsMatchingAndOutreachChatAgent = 0;
+    }
+
+    if (mainData.checkboxPreScreeningWithAiAgents) {
+        mainData.averageNoOfApplicantsShortlistedPerJobForPrescreening = mainData.prescreeningCompleted;
+        mainData.manualEffortSavedHoursScreening = roundDecimal((mainData.averageNoOfApplicantsShortlistedPerJobForPrescreening*mainData.timeSpendPerScreenManuallyPhoneMins)/60);
+        mainData.costSavedScreening = roundDecimal(mainData.averageNoOfApplicantsShortlistedPerJobForPrescreening*mainData.timeSpendPerScreenManuallyPhoneMins*mainData.recruiterOrPanelistCostPerMinute);
+        mainData.spendOnTheFeatureScreening = mainData.priceCreditsPreScreened;
+        mainData.actualCostSavingsPostHyreoScreening = (mainData.costSavedScreening - mainData.spendOnTheFeatureScreening);
+
+        mainData.touchPointsAgentsEmailRecruiters = mainData.prescreeningCompleted*mainData.emailRecruitersPrescreen;
+        mainData.touchPointsAgentsEmailCandidates = mainData.prescreeningCompleted*mainData.emailCandidatePrescreen;
+        mainData.touchPointsAgentsSms = mainData.prescreeningCompleted*mainData.smsPrescreen;
+        mainData.touchPointsAgentsWhatsapp = mainData.prescreeningCompleted*mainData.whatsappPrescreen;
+        mainData.touchPointsAgentsVoiceAgent = mainData.prescreeningCompleted*mainData.voiceAgentPrescreen;
+        mainData.touchPointsAgentsChatAgent = mainData.prescreeningCompleted*mainData.chatAgentPrescreen;
+    } else {
+        mainData.averageNoOfApplicantsShortlistedPerJobForPrescreening = 0;
+        mainData.manualEffortSavedHoursScreening = 0;
+        mainData.costSavedScreening = 0;
+        mainData.spendOnTheFeatureScreening = 0;
+        mainData.actualCostSavingsPostHyreoScreening = 0;
+
+        mainData.touchPointsAgentsEmailRecruiters = 0;
+        mainData.touchPointsAgentsEmailCandidates = 0;
+        mainData.touchPointsAgentsSms = 0;
+        mainData.touchPointsAgentsWhatsapp = 0;
+        mainData.touchPointsAgentsVoiceAgent = 0;
+        mainData.touchPointsAgentsChatAgent = 0;
+    }
+
+    if (mainData.checkboxAutomatedInterviewScheduler) {
+        mainData.averageNoOfInterviewsScheduledIncludingMultipleRounds = mainData.shortlistedForInterviews*mainData.numberOfInterviews;
+        mainData.manualEffortSavedHoursInterviewScheduling = roundDecimal((mainData.averageNoOfInterviewsScheduledIncludingMultipleRounds*mainData.timeSpendPerSchedulingTaskInMinsIncludingRescheduling)/60);
+        mainData.costSavedInterviewScheduling = roundDecimal(mainData.averageNoOfInterviewsScheduledIncludingMultipleRounds*mainData.timeSpendPerSchedulingTaskInMinsIncludingRescheduling*mainData.recruiterOrPanelistCostPerMinute);
+        mainData.spendOnTheFeatureInterviewScheduling = mainData.priceCreditsInterviewed;
+        mainData.actualCostSavingsPostHyreoInterviewScheduling = (mainData.costSavedInterviewScheduling - mainData.spendOnTheFeatureInterviewScheduling);
+
+        mainData.touchPointsSchedulerEmailRecruiters = mainData.shortlistedForInterviews*mainData.emailRecruitersInterview*mainData.numberOfInterviews;
+        mainData.touchPointsSchedulerEmailCandidates = mainData.shortlistedForInterviews*mainData.emailCandidateInterview*mainData.numberOfInterviews;
+        mainData.touchPointsSchedulerSms = mainData.shortlistedForInterviews*mainData.smsInterview;
+        mainData.touchPointsSchedulerWhatsapp = mainData.shortlistedForInterviews*mainData.whatsappInterview*mainData.numberOfInterviews;
+        mainData.touchPointsSchedulerVoiceAgent = mainData.shortlistedForInterviews*mainData.voiceAgentInterview*mainData.numberOfInterviews;
+        mainData.touchPointsSchedulerChatAgent = mainData.shortlistedForInterviews*mainData.chatAgentInterview*mainData.numberOfInterviews;
+    } else {
+        mainData.averageNoOfInterviewsScheduledIncludingMultipleRounds = 0;
+        mainData.manualEffortSavedHoursInterviewScheduling = 0;
+        mainData.costSavedInterviewScheduling = 0;
+        mainData.spendOnTheFeatureInterviewScheduling = 0;
+        mainData.actualCostSavingsPostHyreoInterviewScheduling = 0;
+
+        mainData.touchPointsSchedulerEmailRecruiters = 0;
+        mainData.touchPointsSchedulerEmailCandidates = 0;
+        mainData.touchPointsSchedulerSms = 0;
+        mainData.touchPointsSchedulerWhatsapp = 0;
+        mainData.touchPointsSchedulerVoiceAgent = 0;
+        mainData.touchPointsSchedulerChatAgent = 0;
+    }
+
+    if (mainData.checkboxPostOfferCandidateEngagement) {
+        mainData.totalNumberOfOffersMade = mainData.offeredCandidates;
+
+        mainData.touchPointsEngagementEmailRecruiters = mainData.offeredCandidates*mainData.emailRecruitersPostOffer;
+        mainData.touchPointsEngagementEmailCandidates = mainData.offeredCandidates*mainData.emailCandidatePostOffer;
+        mainData.touchPointsEngagementSms = mainData.offeredCandidates*mainData.smsPostOffer;
+        mainData.touchPointsEngagementWhatsapp = mainData.offeredCandidates*mainData.whatsappPostOffer;
+        mainData.touchPointsEngagementVoiceAgent = mainData.offeredCandidates*mainData.voiceAgentPostOffer;
+        mainData.touchPointsEngagementChatAgent = mainData.offeredCandidates*mainData.chatAgentPostOffer;
+
+        mainData.yearlyTotalOffers = mainData.offeredCandidates;
+    } else {
+        mainData.totalNumberOfOffersMade = 0;
+
+        mainData.touchPointsEngagementEmailRecruiters = 0;
+        mainData.touchPointsEngagementEmailCandidates = 0;
+        mainData.touchPointsEngagementSms = 0;
+        mainData.touchPointsEngagementWhatsapp = 0;
+        mainData.touchPointsEngagementVoiceAgent = 0;
+        mainData.touchPointsEngagementChatAgent = 0;
+
+        mainData.yearlyTotalOffers = 0;
+    }
+
+    // ROI AutomationPost Offer
+    mainData.yearlyDeclinePercentage = mainData.offerConversion;
+    mainData.numberOfCandidatesWhoJoinedAdditionally = roundDecimal(mainData.yearlyTotalOffers*(mainData.conversionPercentageImprovement/100));
+    mainData.realisedRevenueTotalAdditionalBillableHours = roundDecimal(mainData.numberOfCandidatesWhoJoinedAdditionally*mainData.averageBillingLossInBillableDaysPerDeclineInDays*(mainData.percentageOfDeclinedOffersResultingInBillingLoss/100)*8);
+    mainData.realisedRevenueTotalOpportunityCostSaved = mainData.realisedRevenueTotalAdditionalBillableHours*mainData.averageIndiaBillingRateInUsdPerHour;
+    mainData.effortSavedInHours = (mainData.numberOfCandidatesWhoJoinedAdditionally*mainData.effortSavingsAverageNoOfInterviewsToShortlistOneOffer*mainData.effortSavingsAverageTimeOfAnInterviewInHours);
+    mainData.effortSavedHiringManagerTotalInUsd = (mainData.effortSavedInHours*mainData.effortSavingsHiringManagerCostPerHrInUsdPerHour);
+    mainData.effortSavingsInHours = (10*mainData.numberOfCandidatesWhoJoinedAdditionally);
+    mainData.effortSavedOfferRolloutTotalSavings = (mainData.numberOfCandidatesWhoJoinedAdditionally*mainData.effortSavingsCostPerOfferInUsd);
+    mainData.effortSavedNoOfPostOfferResourcesEffortAutomated = (mainData.yearlyTotalOffers/2000);
+    mainData.effortSavedPofuInHours = (mainData.effortSavedNoOfPostOfferResourcesEffortAutomated*2000);
+    mainData.effortSavedPofuTotalInUsd = (mainData.effortSavedNoOfPostOfferResourcesEffortAutomated*mainData.effortSavingsPofuAverageCostPerResourcePerYearInUsd*(mainData.effortSavingsPofuDurationInMonths/12));
+
+    mainData.totalImpactInUsd = (mainData.realisedRevenueTotalOpportunityCostSaved+mainData.effortSavingsInHours+mainData.effortSavedHiringManagerTotalInUsd+mainData.effortSavedOfferRolloutTotalSavings+mainData.effortSavedPofuTotalInUsd);
+    mainData.overallImpactInUsd = mainData.totalImpactInUsd;
+
+    // alert(mainData.totalImpactInUsd);
+    // ROI AutomationPost Offer
+
+    // ROI Automation PreOffer
+    mainData.priceTotalCredits = (mainData.priceCreditsOffered+mainData.priceCreditsInterviewed+mainData.priceCreditsPreScreened+mainData.priceCreditsMatched+mainData.priceCreditsSourced);
+    mainData.totalEffortSaved = (mainData.manualEffortSavedHoursSourcing+mainData.manualEffortSavedHoursMatching+mainData.manualEffortSavedHoursScreening+mainData.manualEffortSavedHoursInterviewScheduling);
+    mainData.totalSavingsPreOfferInr = mainData.actualCostSavingsPostHyreoSourcing + mainData.actualCostSavingsPostHyreoMatching + mainData.actualCostSavingsPostHyreoScreening + mainData.actualCostSavingsPostHyreoInterviewScheduling;
+    mainData.totalSavingsPreOfferUsd = (mainData.totalSavingsPreOfferInr/mainData.UsdConversion);
+    // ROI Automation PreOffer
+
+    // TouchPoints
+    mainData.touchPointsTotalEmailRecruiters = (mainData.touchPointsHyreoTalentNetworkEmailRecruiters + mainData.touchPointsMatchingAndOutreachEmailRecruiters + mainData.touchPointsAgentsEmailRecruiters + mainData.touchPointsSchedulerEmailRecruiters + mainData.touchPointsEngagementEmailRecruiters);
+    mainData.touchPointsTotalEmailCandidates = (mainData.touchPointsHyreoTalentNetworkEmailCandidates + mainData.touchPointsMatchingAndOutreachEmailCandidates + mainData.touchPointsAgentsEmailCandidates + mainData.touchPointsSchedulerEmailCandidates + mainData.touchPointsEngagementEmailCandidates);
+    mainData.touchPointsTotalSms = (mainData.touchPointsHyreoTalentNetworkSms + mainData.touchPointsMatchingAndOutreachSms + mainData.touchPointsAgentsSms + mainData.touchPointsSchedulerSms + mainData.touchPointsEngagementSms);
+    mainData.touchPointsTotalWhatsapp = (mainData.touchPointsHyreoTalentNetworkWhatsapp + mainData.touchPointsMatchingAndOutreachWhatsapp + mainData.touchPointsAgentsWhatsapp + mainData.touchPointsSchedulerWhatsapp + mainData.touchPointsEngagementWhatsapp);
+    mainData.touchPointsTotalVoiceAgent = (mainData.touchPointsHyreoTalentNetworkVoiceAgent + mainData.touchPointsMatchingAndOutreachVoiceAgent + mainData.touchPointsAgentsVoiceAgent + mainData.touchPointsSchedulerVoiceAgent + mainData.touchPointsEngagementVoiceAgent);
+    mainData.touchPointsTotalChatAgent = (mainData.touchPointsHyreoTalentNetworkChatAgent + mainData.touchPointsMatchingAndOutreachChatAgent + mainData.touchPointsAgentsChatAgent + mainData.touchPointsSchedulerChatAgent + mainData.touchPointsEngagementChatAgent);
+    mainData.totalTouchPoints = (mainData.touchPointsTotalEmailRecruiters + mainData.touchPointsTotalEmailCandidates + mainData.touchPointsTotalSms+ mainData.touchPointsTotalWhatsapp + mainData.touchPointsTotalVoiceAgent + mainData.touchPointsTotalChatAgent);
+    // TouchPoints
+
+    // ROI Engagement
+    mainData.countAutomatedTouchPoints = roundDecimal(mainData.totalTouchPoints-mainData.touchPointsTotalEmailRecruiters);
+    mainData.countCandidateFeedbacks = roundDecimal((mainData.totalNumberOfOffersMade*(mainData.postOfferAveragePercentageOfCandidatesProvidingFeedback/100)*mainData.postOfferAverageNumberOfFeedbacksQuestions)+((mainData.interviewAveragePercentageOfCandidatesProvidingFeedback/100)*mainData.interviewAverageNumberOfFeedbacksQuestions*mainData.averageNoOfInterviewsScheduledIncludingMultipleRounds)+((mainData.offerToBeMadeAveragePercentageOfCandidatesProvidingFeedback/100)*mainData.offerToBeMadeAverageNumberOfFeedbackQuestions*mainData.totalNumberOfOffersMade));
+    mainData.countChatbotQueryResolutions = roundDecimal(((mainData.postOfferAverageNumberOfCandidatesEngagingWithChatbot/100)*mainData.postOfferAverageNumberOfQueriesPerCandidate*mainData.postOfferAverageHandlingTimePerQueryInMins*mainData.totalNumberOfOffersMade)+(mainData.interviewAverageNumberOfQueriesPerCandidate*(mainData.interviewAverageNumberOfCandidatesEngagingWithChatbot/100)*mainData.averageNoOfInterviewsScheduledIncludingMultipleRounds)+(mainData.applyNumberOfQueriesPerCandidate*(mainData.applyAverageNumberOfCandidatesEngagingWithChatbot/100)*mainData.averageNumberOfMatchedApplicants));
+    mainData.countTicketsOrActionsCapturedByChatbot = roundDecimal((mainData.postOfferAverageCandidatesWhoCreatesTickets/100)*mainData.postOfferAverageNumberOfTicketPerCandidate*mainData.totalNumberOfOffersMade);
+    mainData.countRecruiterAlertsIncludesDailyWeeklyActionReport = mainData.touchPointsTotalEmailRecruiters;
+    mainData.countVoiceCalls = mainData.touchPointsTotalVoiceAgent;
+
+    mainData.totalEffortsInMinsAutomatedTouchPoints = roundDecimal(mainData.countAutomatedTouchPoints*mainData.annualEffortInMinsAutomatedTouchPoints);
+    mainData.totalEffortsInMinsCandidateFeedbacks = roundDecimal(mainData.countCandidateFeedbacks*mainData.annualEffortInMinsCandidateFeedbacks);
+    mainData.totalEffortsInMinsChatbotQueryResolutions = roundDecimal(mainData.countChatbotQueryResolutions*mainData.annualEffortInMinsChatbotQueryResolutions);
+    mainData.totalEffortsInMinsTicketsOrActionsCapturedByChatbot = roundDecimal(mainData.countTicketsOrActionsCapturedByChatbot*mainData.annualEffortInMinsTicketsOrActionsCapturedByChatbot);
+    mainData.totalEffortsInMinsRecruiterAlertsIncludesDailyWeeklyActionReport = roundDecimal(mainData.countRecruiterAlertsIncludesDailyWeeklyActionReport*mainData.annualEffortInMinsRecruiterAlertsIncludesDailyWeeklyActionReport);
+    mainData.totalEffortsInMinsVoiceCalls = roundDecimal(mainData.countVoiceCalls*mainData.annualEffortInMinsVoiceCalls);
+
+    mainData.totalEffortsInHoursAutomatedTouchPoints = roundDecimal(mainData.totalEffortsInMinsAutomatedTouchPoints/60);
+    mainData.totalEffortsInHoursCandidateFeedbacks = roundDecimal(mainData.totalEffortsInMinsCandidateFeedbacks/60);
+    mainData.totalEffortsInHoursChatbotQueryResolutions = roundDecimal(mainData.totalEffortsInMinsChatbotQueryResolutions/60);
+    mainData.totalEffortsInHoursTicketsOrActionsCapturedByChatbot = roundDecimal(mainData.totalEffortsInMinsTicketsOrActionsCapturedByChatbot/60);
+    mainData.totalEffortsInHoursRecruiterAlertsIncludesDailyWeeklyActionReport = roundDecimal(mainData.totalEffortsInMinsRecruiterAlertsIncludesDailyWeeklyActionReport/60);
+    mainData.totalEffortsInHoursVoiceCalls = roundDecimal(mainData.totalEffortsInMinsVoiceCalls/60);
+
+    mainData.totalEffortsInMins = (mainData.totalEffortsInMinsAutomatedTouchPoints+mainData.totalEffortsInMinsCandidateFeedbacks+mainData.totalEffortsInMinsChatbotQueryResolutions+mainData.totalEffortsInMinsTicketsOrActionsCapturedByChatbot+mainData.totalEffortsInMinsRecruiterAlertsIncludesDailyWeeklyActionReport+mainData.totalEffortsInMinsVoiceCalls)
+    mainData.totalEffortsInHours = (mainData.totalEffortsInHoursAutomatedTouchPoints+mainData.totalEffortsInHoursCandidateFeedbacks+mainData.totalEffortsInHoursChatbotQueryResolutions+mainData.totalEffortsInHoursTicketsOrActionsCapturedByChatbot+mainData.totalEffortsInHoursRecruiterAlertsIncludesDailyWeeklyActionReport+mainData.totalEffortsInHoursVoiceCalls);
+    mainData.automatedCostSavedInr = (mainData.totalEffortsInMins*mainData.recruiterOrPanelistCostPerMinute);
+    mainData.automatedCostSavedUsd = (mainData.automatedCostSavedInr/mainData.UsdConversion);
+    // ROI Engagement
+
+    //HyreoTalentNetwork
+    mainData.hyreoTokensTotalInr = mainData.hyreoTokensFixedCost + mainData.hyreoTokensSubscriptionCostInr;
+    mainData.hyreoTokensTotalUsd = roundDecimal(mainData.hyreoTokensTotalInr / mainData.UsdConversion);
+    mainData.hyreoTokens = mainData.hyreoTokensTotalUsd;
+    mainData.externalTokens = roundDecimal(mainData.externalTokensFinalCostUsdTotal + (mainData.externalTokensEngagementFinalCost ? mainData.codingAssessmentCost : 0));
+    mainData.estimatedCost = mainData.hyreoTokens + mainData.externalTokens;
+    mainData.perJobCost = mainData.estimatedCost/mainData.openPositionsPerYear;
+    //HyreoTalentNetwork
+
+    mainData.productivity = humanRound(mainData.totalSavingsPreOfferUsd + mainData.effortSavedPofuTotalInUsd + mainData.effortSavedOfferRolloutTotalSavings + mainData.effortSavedHiringManagerTotalInUsd + mainData.automatedCostSavedUsd);
+    mainData.revenue = humanRound(mainData.realisedRevenueTotalOpportunityCostSaved);
+    mainData.roi = humanRound(mainData.productivity/(mainData.hyreoTokens+mainData.externalTokens))
+    
+    console.log('mainData',mainData);
+    $('#hyreoTokens').text(`$${humanRound(mainData.hyreoTokens)}`);
+    $('#externalTokens').text(`$${humanRound(mainData.externalTokens)}`);
+    $('#estimatedCost').text(`$${humanRound(mainData.estimatedCost)}`);
+    $('#perJobCost').text(`$${humanRound(mainData.perJobCost)}`);
+    // $('#productivity').text(`$${mainData.productivity}`);
+    // $('#revenue').text(`$${mainData.revenue}`);
+    // $('#roi').text(`${mainData.roi} x`);
+}
