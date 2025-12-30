@@ -474,7 +474,7 @@ function Calculations() {
     $('#externalTokens').text(`$${humanRound(mainData.externalTokens)}`);
     $('#estimatedCost').text(`$${humanRound(mainData.estimatedCost)}`);
     $('#perJobCost').text(`$${humanRound(mainData.perJobCost)}`);
-    // $('#productivity').text(`$${mainData.productivity}`);
-    // $('#revenue').text(`$${mainData.revenue}`);
-    // $('#roi').text(`${mainData.roi} x`);
+    $('#productivity').text(`$${mainData.productivity}`);
+    $('#revenue').text(`$${mainData.revenue}`);
+    $('#roi').text(`${mainData.roi} x`);
 }
