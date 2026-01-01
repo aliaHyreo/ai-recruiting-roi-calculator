@@ -143,9 +143,9 @@
   --hx-icon-color-white: #ffffff;
 
   /* Company colors */
-  --hx-color-company-primary: #3fab3d;
-  --hx-color-company-primary-strong: #2a8528;
-  --hx-color-company-primary-light: #56c354;
+  --hx-color-company-primary: #5e30c2;
+  --hx-color-company-primary-strong: #5327b3;
+  --hx-color-company-primary-light: #6e3fd4;
 }
 
 /* Apply Inter font globally */
@@ -325,7 +325,7 @@ input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   height: 20px;
   width: 20px;
-  background: #7f56d9;
+  background: #5e30c2;
   border-radius: 50%;
   border: 2px solid #fff;
   cursor: pointer;
@@ -341,13 +341,13 @@ input[type="range"]::-moz-range-track {
 input[type="range"]::-moz-range-thumb {
   height: 16px;
   width: 16px;
-  background: #7f56d9;
+  background: #5e30c2;
   border-radius: 50%;
   cursor: pointer;
 }
 
 /* input[type="checkbox"] {
-  accent-color: #7F56D9;
+  accent-color: #5e30c2;
 } */
 
 .module-card input {
@@ -357,7 +357,7 @@ input[type="range"]::-moz-range-thumb {
 .module-card span {
   width: 16px;
   height: 16px;
-  border: 2px solid #7F56D9;
+  border: 2px solid #5e30c2;
   border-radius: 4px;
   display: inline-block;
   position: relative;
@@ -365,7 +365,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .module-card input:checked + span {
-  background-color: #7F56D9;
+  background-color: #5e30c2;
 }
 
 .module-card input:checked + span::after {
