@@ -235,18 +235,6 @@ function Calculations() {
     if (mainData.checkboxHyreoTalentNetwork) {
         mainData.externalTokensHyreoTalentNetworkVariableCost = roundDecimal(mainData.hyreoSourcedProfiles * mainData.costPerCandidateSourcing);
         mainData.externalTokensHyreoTalentNetworkFinalCost = roundDecimal(mainData.externalTokensHyreoTalentNetworkVariableCost*(1+(mainData.externalTokensHyreoTalentNetworkPercentage/100)));
-        mainData.externalTokensWithJdVariableCost = roundDecimal(mainData.resumeMatching * mainData.costPerCandidateMatching);
-        mainData.externalTokensWithJdFinalCost = roundDecimal(mainData.externalTokensWithJdVariableCost*(1+(mainData.externalTokensWithJdPercentage/100)));
-        mainData.externalTokensPreScreeningWithAiAgentsVariableCost = roundDecimal(mainData.prescreeningCompleted * mainData.costPerCandidateScreening);
-        mainData.externalTokensPreScreeningWithAiAgentsFinalCost = roundDecimal(mainData.externalTokensPreScreeningWithAiAgentsVariableCost*(1+(mainData.externalTokensPreScreeningWithAiAgentsPercentage/100)));
-        mainData.externalTokensSchedulerVariableCost = roundDecimal(mainData.shortlistedForInterviews * mainData.costPerCandidateInterview);
-        mainData.externalTokensSchedulerFinalCost = roundDecimal(mainData.externalTokensSchedulerVariableCost*(1+(mainData.externalTokensSchedulerPercentage/100)));
-        mainData.externalTokensEngagementVariableCost = roundDecimal(mainData.offeredCandidates * mainData.costPerCandidatePostOffer);
-        mainData.externalTokensEngagementFinalCost = roundDecimal(mainData.externalTokensEngagementVariableCost*(1+(mainData.externalTokensEngagementPercentage/100)));
-        mainData.externalTokensVariableCostInrTotal = roundDecimal(mainData.externalTokensHyreoTalentNetworkVariableCost + mainData.externalTokensWithJdVariableCost + mainData.externalTokensPreScreeningWithAiAgentsVariableCost + mainData.externalTokensSchedulerVariableCost + mainData.externalTokensEngagementVariableCost);
-        mainData.externalTokensFinalCostInrTotal = roundDecimal(mainData.externalTokensHyreoTalentNetworkFinalCost + mainData.externalTokensWithJdFinalCost + mainData.externalTokensPreScreeningWithAiAgentsFinalCost + mainData.externalTokensSchedulerFinalCost + mainData.externalTokensEngagementFinalCost);
-        mainData.externalTokensFinalCostUsdTotal = roundDecimal(mainData.externalTokensFinalCostInrTotal / mainData.UsdConversion);
-        mainData.hyreoTokensSubscriptionCostInr = roundDecimal((mainData.hyreoTokensSubscriptionCostPercentage/100)*mainData.externalTokensVariableCostInrTotal);
 
         // ROI Automation Sourcing
         mainData.averageNumberOfSourcedProfiles = mainData.hyreoSourcedProfiles;
@@ -262,20 +250,8 @@ function Calculations() {
         mainData.profilesAutoSourcedImpact = mainData.hyreoSourcedProfiles;
         // Impact Summary
     } else {
-        mainData.externalTokensHyreoTalenNetworkVariableCost = 0;
+        mainData.externalTokensHyreoTalentNetworkVariableCost = 0;
         mainData.externalTokensHyreoTalentNetworkFinalCost = 0;
-        mainData.externalTokensWithJdVariableCost = 0;
-        mainData.externalTokensWithJdFinalCost = 0;
-        mainData.externalTokensPreScreeningWithAiAgentsVariableCost = 0;
-        mainData.externalTokensPreScreeningWithAiAgentsFinalCost = 0;
-        mainData.externalTokensSchedulerVariableCost = 0;
-        mainData.externalTokensSchedulerFinalCost = 0;
-        mainData.externalTokensEngagementVariableCost = 0;
-        mainData.externalTokensEngagementFinalCost = 0;
-        mainData.externalTokensVariableCostInrTotal = 0;
-        mainData.externalTokensFinalCostInrTotal = 0;
-        mainData.externalTokensFinalCostUsdTotal = 0;
-        mainData.hyreoTokensSubscriptionCostInr = 0;
         mainData.averageNumberOfSourcedProfiles = 0;
 
         mainData.currentSourcingToolCostLikeNaukri = 0;
@@ -290,6 +266,8 @@ function Calculations() {
     }
 
     if (mainData.checkboxAutomatedResumeMatchingWithJd) {
+        mainData.externalTokensWithJdVariableCost = roundDecimal(mainData.resumeMatching * mainData.costPerCandidateMatching);
+        mainData.externalTokensWithJdFinalCost = roundDecimal(mainData.externalTokensWithJdVariableCost*(1+(mainData.externalTokensWithJdPercentage/100)));
         // ROI Automation Matching
         mainData.averageNumberOfMatchedApplicants = mainData.applicants;
         mainData.manualEffortSavedHoursMatching = roundDecimal((mainData.timeSpendToMatchOrRankCvMins*mainData.averageNumberOfMatchedApplicants)/60);
@@ -306,6 +284,9 @@ function Calculations() {
 
         mainData.profilesMatchedImpact = mainData.resumeMatching;
     } else {
+        mainData.externalTokensWithJdVariableCost = 0;
+        mainData.externalTokensWithJdFinalCost = 0;
+
         mainData.averageNumberOfMatchedApplicants = 0;
         mainData.manualEffortSavedHoursMatching = 0;
         mainData.costSavedMatching = 0;
@@ -323,6 +304,9 @@ function Calculations() {
     }
 
     if (mainData.checkboxPreScreeningWithAiAgents) {
+        mainData.externalTokensPreScreeningWithAiAgentsVariableCost = roundDecimal(mainData.prescreeningCompleted * mainData.costPerCandidateScreening);
+        mainData.externalTokensPreScreeningWithAiAgentsFinalCost = roundDecimal(mainData.externalTokensPreScreeningWithAiAgentsVariableCost*(1+(mainData.externalTokensPreScreeningWithAiAgentsPercentage/100)));
+
         mainData.averageNoOfApplicantsShortlistedPerJobForPrescreening = mainData.prescreeningCompleted;
         mainData.manualEffortSavedHoursScreening = roundDecimal((mainData.averageNoOfApplicantsShortlistedPerJobForPrescreening*mainData.timeSpendPerScreenManuallyPhoneMins)/60);
         mainData.costSavedScreening = roundDecimal(mainData.averageNoOfApplicantsShortlistedPerJobForPrescreening*mainData.timeSpendPerScreenManuallyPhoneMins*mainData.recruiterOrPanelistCostPerMinute);
@@ -338,6 +322,9 @@ function Calculations() {
 
         mainData.prescreeningCompletedImpact = mainData.prescreeningCompleted;
     } else {
+        mainData.externalTokensPreScreeningWithAiAgentsVariableCost = 0;
+        mainData.externalTokensPreScreeningWithAiAgentsFinalCost = 0;
+
         mainData.averageNoOfApplicantsShortlistedPerJobForPrescreening = 0;
         mainData.manualEffortSavedHoursScreening = 0;
         mainData.costSavedScreening = 0;
@@ -355,6 +342,9 @@ function Calculations() {
     }
 
     if (mainData.checkboxAutomatedInterviewScheduler) {
+        mainData.externalTokensSchedulerVariableCost = roundDecimal(mainData.shortlistedForInterviews * mainData.costPerCandidateInterview);
+        mainData.externalTokensSchedulerFinalCost = roundDecimal(mainData.externalTokensSchedulerVariableCost*(1+(mainData.externalTokensSchedulerPercentage/100)));
+
         mainData.averageNoOfInterviewsScheduledIncludingMultipleRounds = mainData.shortlistedForInterviews*mainData.numberOfInterviews;
         mainData.manualEffortSavedHoursInterviewScheduling = roundDecimal((mainData.averageNoOfInterviewsScheduledIncludingMultipleRounds*mainData.timeSpendPerSchedulingTaskInMinsIncludingRescheduling)/60);
         mainData.costSavedInterviewScheduling = roundDecimal(mainData.averageNoOfInterviewsScheduledIncludingMultipleRounds*mainData.timeSpendPerSchedulingTaskInMinsIncludingRescheduling*mainData.recruiterOrPanelistCostPerMinute);
@@ -370,6 +360,9 @@ function Calculations() {
 
         mainData.interviewsAutoScheduledImpact = mainData.shortlistedForInterviews*mainData.numberOfInterviews;
     } else {
+        mainData.externalTokensSchedulerVariableCost = 0;
+        mainData.externalTokensSchedulerFinalCost = 0;
+
         mainData.averageNoOfInterviewsScheduledIncludingMultipleRounds = 0;
         mainData.manualEffortSavedHoursInterviewScheduling = 0;
         mainData.costSavedInterviewScheduling = 0;
@@ -387,6 +380,8 @@ function Calculations() {
     }
 
     if (mainData.checkboxPostOfferCandidateEngagement) {
+        mainData.externalTokensEngagementVariableCost = roundDecimal(mainData.offeredCandidates * mainData.costPerCandidatePostOffer);
+        mainData.externalTokensEngagementFinalCost = roundDecimal(mainData.externalTokensEngagementVariableCost*(1+(mainData.externalTokensEngagementPercentage/100)));
         mainData.totalNumberOfOffersMade = mainData.offeredCandidates;
 
         mainData.touchPointsEngagementEmailRecruiters = mainData.offeredCandidates*mainData.emailRecruitersPostOffer;
@@ -398,6 +393,8 @@ function Calculations() {
 
         mainData.yearlyTotalOffers = mainData.offeredCandidates;
     } else {
+        mainData.externalTokensEngagementVariableCost = 0;
+        mainData.externalTokensEngagementFinalCost = 0;
         mainData.totalNumberOfOffersMade = 0;
 
         mainData.touchPointsEngagementEmailRecruiters = 0;
@@ -409,6 +406,11 @@ function Calculations() {
 
         mainData.yearlyTotalOffers = 0;
     }
+
+    mainData.externalTokensVariableCostInrTotal = roundDecimal(mainData.externalTokensHyreoTalentNetworkVariableCost + mainData.externalTokensWithJdVariableCost + mainData.externalTokensPreScreeningWithAiAgentsVariableCost + mainData.externalTokensSchedulerVariableCost + mainData.externalTokensEngagementVariableCost);
+    mainData.externalTokensFinalCostInrTotal = roundDecimal(mainData.externalTokensHyreoTalentNetworkFinalCost + mainData.externalTokensWithJdFinalCost + mainData.externalTokensPreScreeningWithAiAgentsFinalCost + mainData.externalTokensSchedulerFinalCost + mainData.externalTokensEngagementFinalCost);
+    mainData.externalTokensFinalCostUsdTotal = roundDecimal(mainData.externalTokensFinalCostInrTotal / mainData.UsdConversion);
+    mainData.hyreoTokensSubscriptionCostInr = roundDecimal((mainData.hyreoTokensSubscriptionCostPercentage/100)*mainData.externalTokensVariableCostInrTotal);
 
     // ROI AutomationPost Offer
     mainData.yearlyDeclinePercentage = mainData.offerConversion;
