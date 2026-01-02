@@ -1,4 +1,5 @@
 let mainData;
+// let isInitialLoad = true;
 
 $(document).ready(function () {
     globalThis.getMainData().then(function (data) {
@@ -70,25 +71,55 @@ function humanRound(value) {
 function getProjectedTalentPipelineValues(value) {
     mainData.openPositionsPerYear = value;
     mainData.numberOfInterviews = Number($('#interviewRoundsInput').val());
-    $('#projectedTalentPipeline #hired').text(humanRound(mainData.openPositionsPerYear));
+    
+    const hiredValue = humanRound(mainData.openPositionsPerYear);
+    // if (!isInitialLoad) {
+        animateValue('#projectedTalentPipeline #hired', hiredValue, { duration: 600 });
+    // } else {
+    //     $('#projectedTalentPipeline #hired').text(hiredValue);
+    // }
 
     mainData.offeredCandidates = roundDecimal(mainData.openPositionsPerYear / ($('#offerConfirmationInput').val() / 100), 2);
-    $('#projectedTalentPipeline #offeredCandidates').text(humanRound(mainData.offeredCandidates));
+    // if (!isInitialLoad) {
+        animateValue('#projectedTalentPipeline #offeredCandidates', humanRound(mainData.offeredCandidates), { duration: 600 });
+    // } else {
+    //     $('#projectedTalentPipeline #offeredCandidates').text(humanRound(mainData.offeredCandidates));
+    // }
 
     mainData.shortlistedForInterviews = roundDecimal(mainData.offeredCandidates / ($('#interviewedCandidatesOfferedInput').val() / 100), 2);
-    $('#projectedTalentPipeline #shortlistedForInterviews').text(humanRound(mainData.shortlistedForInterviews));
+    // if (!isInitialLoad) {
+        animateValue('#projectedTalentPipeline #shortlistedForInterviews', humanRound(mainData.shortlistedForInterviews), { duration: 600 });
+    // } else {
+    //     $('#projectedTalentPipeline #shortlistedForInterviews').text(humanRound(mainData.shortlistedForInterviews));
+    // }
 
     mainData.prescreeningCompleted = roundDecimal(mainData.shortlistedForInterviews / ($('#preScreenedCandidatesInterviewedInput').val() / 100), 2);
-    $('#projectedTalentPipeline #prescreeningCompleted').text(humanRound(mainData.prescreeningCompleted));
+    // if (!isInitialLoad) {
+        animateValue('#projectedTalentPipeline #prescreeningCompleted', humanRound(mainData.prescreeningCompleted), { duration: 600 });
+    // } else {
+    //     $('#projectedTalentPipeline #prescreeningCompleted').text(humanRound(mainData.prescreeningCompleted));
+    // }
 
     mainData.applicants = roundDecimal(mainData.prescreeningCompleted / ($('#applicantsPreScreenedInput').val() / 100), 2);
-    $('#projectedTalentPipeline #applicants').text(humanRound(mainData.applicants));
+    // if (!isInitialLoad) {
+        animateValue('#projectedTalentPipeline #applicants', humanRound(mainData.applicants), { duration: 600 });
+    // } else {
+    //     $('#projectedTalentPipeline #applicants').text(humanRound(mainData.applicants));
+    // }
 
     mainData.resumeMatching = roundDecimal(mainData.applicants / ($('#applicantsResumeMatchingInput').val() / 100), 2);
-    $('#projectedTalentPipeline #resumeMatching').text(humanRound(mainData.resumeMatching));
+    // if (!isInitialLoad) {
+        animateValue('#projectedTalentPipeline #resumeMatching', humanRound(mainData.resumeMatching), { duration: 600 });
+    // } else {
+    //     $('#projectedTalentPipeline #resumeMatching').text(humanRound(mainData.resumeMatching));
+    // }
 
     mainData.hyreoSourcedProfiles = roundDecimal(mainData.applicants * ($('#sourcedViaHyreoTalentNetworkInput').val() / 100), 2);
-    $('#projectedTalentPipeline #hyreoSourcedProfiles').text(humanRound(mainData.hyreoSourcedProfiles));
+    // if (!isInitialLoad) {
+        animateValue('#projectedTalentPipeline #hyreoSourcedProfiles', humanRound(mainData.hyreoSourcedProfiles), { duration: 600 });
+    // } else {
+    //     $('#projectedTalentPipeline #hyreoSourcedProfiles').text(humanRound(mainData.hyreoSourcedProfiles));
+    // }
 
     Calculations();
 }
@@ -99,85 +130,85 @@ $('#openPositionsPerYear').on('input', function () {
 });
 
 $('#sourcedViaHyreoTalentNetworkInput').on('input', function () {
-    mainData.hyreoSourcedProfiles = roundDecimal(Number($('#projectedTalentPipeline #applicants').text()) * ($(this).val() / 100), 2);
-    $('#projectedTalentPipeline #hyreoSourcedProfiles').text(humanRound(mainData.hyreoSourcedProfiles));
+    mainData.hyreoSourcedProfiles = roundDecimal(Number($('#projectedTalentPipeline #applicants').text().replace(/,/g, '')) * ($(this).val() / 100), 2);
+    animateValue('#projectedTalentPipeline #hyreoSourcedProfiles', humanRound(mainData.hyreoSourcedProfiles), { duration: 600 });
 
     Calculations();
 });
 
 $('#applicantsResumeMatchingInput').on('input', function () {
-    mainData.resumeMatching = roundDecimal(Number($('#projectedTalentPipeline #applicants').text()) / ($(this).val() / 100), 2);
-    $('#projectedTalentPipeline #resumeMatching').text(humanRound(mainData.resumeMatching));
+    mainData.resumeMatching = roundDecimal(Number($('#projectedTalentPipeline #applicants').text().replace(/,/g, '')) / ($(this).val() / 100), 2);
+    animateValue('#projectedTalentPipeline #resumeMatching', humanRound(mainData.resumeMatching), { duration: 600 });
 
     Calculations();
 });
 
 $('#applicantsPreScreenedInput').on('input', function () {
-    mainData.applicants = roundDecimal(Number($('#projectedTalentPipeline #prescreeningCompleted').text()) / ($(this).val() / 100), 2);
-    $('#projectedTalentPipeline #applicants').text(humanRound(mainData.applicants));
+    mainData.applicants = roundDecimal(Number($('#projectedTalentPipeline #prescreeningCompleted').text().replace(/,/g, '')) / ($(this).val() / 100), 2);
+    animateValue('#projectedTalentPipeline #applicants', humanRound(mainData.applicants), { duration: 600 });
 
     mainData.hyreoSourcedProfiles = roundDecimal(mainData.applicants * ($('#sourcedViaHyreoTalentNetworkInput').val() / 100), 2);
-    $('#projectedTalentPipeline #hyreoSourcedProfiles').text(humanRound(mainData.hyreoSourcedProfiles));
+    animateValue('#projectedTalentPipeline #hyreoSourcedProfiles', humanRound(mainData.hyreoSourcedProfiles), { duration: 600 });
 
     mainData.resumeMatching = roundDecimal(mainData.applicants / ($('#applicantsResumeMatchingInput').val() / 100), 2);
-    $('#projectedTalentPipeline #resumeMatching').text(humanRound(mainData.resumeMatching));
+    animateValue('#projectedTalentPipeline #resumeMatching', humanRound(mainData.resumeMatching), { duration: 600 });
 
     Calculations();
 });
 
 $('#preScreenedCandidatesInterviewedInput').on('input', function () {
-    mainData.prescreeningCompleted = roundDecimal(Number($('#shortlistedForInterviews').text()) / ($(this).val() / 100), 2);
-    $('#projectedTalentPipeline #prescreeningCompleted').text(humanRound(mainData.prescreeningCompleted));
+    mainData.prescreeningCompleted = roundDecimal(Number($('#shortlistedForInterviews').text().replace(/,/g, '')) / ($(this).val() / 100), 2);
+    animateValue('#projectedTalentPipeline #prescreeningCompleted', humanRound(mainData.prescreeningCompleted), { duration: 600 });
 
     mainData.applicants = roundDecimal(mainData.prescreeningCompleted / ($('#applicantsPreScreenedInput').val() / 100), 2);
-    $('#projectedTalentPipeline #applicants').text(humanRound(mainData.applicants));
+    animateValue('#projectedTalentPipeline #applicants', humanRound(mainData.applicants), { duration: 600 });
 
     mainData.hyreoSourcedProfiles = roundDecimal(mainData.applicants * ($('#sourcedViaHyreoTalentNetworkInput').val() / 100), 2);
-    $('#projectedTalentPipeline #hyreoSourcedProfiles').text(humanRound(mainData.hyreoSourcedProfiles));
+    animateValue('#projectedTalentPipeline #hyreoSourcedProfiles', humanRound(mainData.hyreoSourcedProfiles), { duration: 600 });
 
     mainData.resumeMatching = roundDecimal(mainData.applicants / ($('#applicantsResumeMatchingInput').val() / 100), 2);
-    $('#projectedTalentPipeline #resumeMatching').text(humanRound(mainData.resumeMatching));
+    animateValue('#projectedTalentPipeline #resumeMatching', humanRound(mainData.resumeMatching), { duration: 600 });
 
     Calculations();
 });
 
 $('#interviewedCandidatesOfferedInput').on('input', function () {
-    mainData.shortlistedForInterviews = roundDecimal(Number($('#offeredCandidates').text()) / ($(this).val() / 100), 2);
-    $('#projectedTalentPipeline #shortlistedForInterviews').text(humanRound(mainData.shortlistedForInterviews));
+    mainData.shortlistedForInterviews = roundDecimal(Number($('#offeredCandidates').text().replace(/,/g, '')) / ($(this).val() / 100), 2);
+    animateValue('#projectedTalentPipeline #shortlistedForInterviews', humanRound(mainData.shortlistedForInterviews), { duration: 600 });
 
     mainData.prescreeningCompleted = roundDecimal(mainData.shortlistedForInterviews / ($('#preScreenedCandidatesInterviewedInput').val() / 100), 2);
-    $('#projectedTalentPipeline #prescreeningCompleted').text(humanRound(mainData.prescreeningCompleted));
+    animateValue('#projectedTalentPipeline #prescreeningCompleted', humanRound(mainData.prescreeningCompleted), { duration: 600 });
 
     mainData.applicants = roundDecimal(mainData.prescreeningCompleted / ($('#applicantsPreScreenedInput').val() / 100), 2);
-    $('#projectedTalentPipeline #applicants').text(humanRound(mainData.applicants));
+    animateValue('#projectedTalentPipeline #applicants', humanRound(mainData.applicants), { duration: 600 });
 
     mainData.hyreoSourcedProfiles = roundDecimal(mainData.applicants * ($('#sourcedViaHyreoTalentNetworkInput').val() / 100), 2);
-    $('#projectedTalentPipeline #hyreoSourcedProfiles').text(humanRound(mainData.hyreoSourcedProfiles));
+    animateValue('#projectedTalentPipeline #hyreoSourcedProfiles', humanRound(mainData.hyreoSourcedProfiles), { duration: 600 });
 
     mainData.resumeMatching = roundDecimal(mainData.applicants / ($('#applicantsResumeMatchingInput').val() / 100), 2);
-    $('#projectedTalentPipeline #resumeMatching').text(humanRound(mainData.resumeMatching));
+    animateValue('#projectedTalentPipeline #resumeMatching', humanRound(mainData.resumeMatching), { duration: 600 });
 
     Calculations();
 });
 
 $('#offerConfirmationInput').on('input', function () {
-    mainData.offeredCandidates = (Number($('#hired').text()) / ($(this).val() / 100));
-    $('#projectedTalentPipeline #offeredCandidates').text(humanRound(roundDecimal(mainData.offeredCandidates)));
+    mainData.offeredCandidates = (Number($('#hired').text().replace(/,/g, '')) / ($(this).val() / 100));
+    animateValue('#projectedTalentPipeline #offeredCandidates', humanRound(roundDecimal(mainData.offeredCandidates)), { duration: 600 });
 
     mainData.shortlistedForInterviews = roundDecimal(mainData.offeredCandidates / ($(this).val() / 100), 2);
-    $('#projectedTalentPipeline #shortlistedForInterviews').text(humanRound(mainData.shortlistedForInterviews));
+    animateValue('#projectedTalentPipeline #shortlistedForInterviews', humanRound(mainData.shortlistedForInterviews), { duration: 600 });
 
     mainData.prescreeningCompleted = roundDecimal(mainData.shortlistedForInterviews / ($('#preScreenedCandidatesInterviewedInput').val() / 100), 2);
-    $('#projectedTalentPipeline #prescreeningCompleted').text(humanRound(mainData.prescreeningCompleted));
+    animateValue('#projectedTalentPipeline #prescreeningCompleted', humanRound(mainData.prescreeningCompleted), { duration: 600 });
 
     mainData.applicants = roundDecimal(mainData.prescreeningCompleted / ($('#applicantsPreScreenedInput').val() / 100), 2);
-    $('#projectedTalentPipeline #applicants').text(humanRound(mainData.applicants));
+    animateValue('#projectedTalentPipeline #applicants', humanRound(mainData.applicants), { duration: 600 });
 
     mainData.hyreoSourcedProfiles = roundDecimal(mainData.applicants * ($('#sourcedViaHyreoTalentNetworkInput').val() / 100), 2);
-    $('#projectedTalentPipeline #hyreoSourcedProfiles').text(humanRound(mainData.hyreoSourcedProfiles));
+    animateValue('#projectedTalentPipeline #hyreoSourcedProfiles', humanRound(mainData.hyreoSourcedProfiles), { duration: 600 });
 
     mainData.resumeMatching = roundDecimal(mainData.applicants / ($('#applicantsResumeMatchingInput').val() / 100), 2);
-    $('#projectedTalentPipeline #resumeMatching').text(humanRound(mainData.resumeMatching));
+    animateValue('#projectedTalentPipeline #resumeMatching', humanRound(mainData.resumeMatching), { duration: 600 });
 
     Calculations();
 });
@@ -476,10 +507,13 @@ function Calculations() {
     mainData.automatedCostSavedUsd = (mainData.automatedCostSavedInr/mainData.UsdConversion);
     // ROI Engagement
 
+    const allModulesNotSelectedFlag = (mainData.checkboxHyreoTalentNetwork || mainData.checkboxAutomatedResumeMatchingWithJd || mainData.checkboxPreScreeningWithAiAgents || mainData.checkboxAutomatedInterviewScheduler || mainData.checkboxPostOfferCandidateEngagement);
+    console.log('allModulesNotSelectedFlag',allModulesNotSelectedFlag);
+
     //HyreoTalentNetwork
     mainData.hyreoTokensTotalInr = mainData.hyreoTokensFixedCost + mainData.hyreoTokensSubscriptionCostInr;
     mainData.hyreoTokensTotalUsd = roundDecimal(mainData.hyreoTokensTotalInr / mainData.UsdConversion);
-    mainData.hyreoTokens = mainData.hyreoTokensTotalUsd;
+    mainData.hyreoTokens = allModulesNotSelectedFlag ? mainData.hyreoTokensTotalUsd : 0;
     mainData.externalTokens = roundDecimal(mainData.externalTokensFinalCostUsdTotal + (mainData.externalTokensEngagementFinalCost ? mainData.codingAssessmentCost : 0));
     mainData.estimatedCost = mainData.hyreoTokens + mainData.externalTokens;
     mainData.perJobCost = mainData.estimatedCost/mainData.openPositionsPerYear;
@@ -493,20 +527,42 @@ function Calculations() {
     mainData.productiveBillableTimeCreatedImpact = mainData.realisedRevenueTotalAdditionalBillableHours;
     
     console.log('mainData',mainData);
-    $('#hyreoTokens').text(`$${humanRound(mainData.hyreoTokens)}`);
-    $('#externalTokens').text(`$${humanRound(mainData.externalTokens)}`);
-    $('#estimatedCost').text(`$${humanRound(mainData.estimatedCost)}`);
-    $('#perJobCost').text(`$${humanRound(mainData.perJobCost)}`);
-    $('#productivity').text(`$${mainData.productivity}`);
-    $('#revenue').text(`$${mainData.revenue}`);
-    $('#roi').text(`${mainData.roi} x`);
+    
+    // Animate all numeric values with subtle animations (only if not initial load)
+    // if (!isInitialLoad) {
+        animateValue('#hyreoTokens', humanRound(mainData.hyreoTokens), { prefix: '$', duration: 600 });
+        animateValue('#externalTokens', humanRound(mainData.externalTokens), { prefix: '$', duration: 600 });
+        animateValue('#estimatedCost', humanRound(mainData.estimatedCost), { prefix: '$', duration: 700 });
+        animateValue('#perJobCost', humanRound(mainData.perJobCost), { prefix: '$', duration: 600 });
+        animateValue('#productivity', mainData.productivity, { prefix: '$', duration: 700 });
+        animateValue('#revenue', mainData.revenue, { prefix: '$', duration: 700 });
+        animateValue('#roi', mainData.roi, { hasX: true, duration: 800, easing: 'easeOutExpo' });
 
-    $('#profilesAutoSourcedImpact').text(`${humanRound(mainData.profilesAutoSourcedImpact)}`);
-    $('#profilesMatchedImpact').text(`${humanRound(mainData.profilesMatchedImpact)}`);
-    $('#prescreeningCompletedImpact').text(`${humanRound(mainData.prescreeningCompletedImpact)}`);
-    $('#interviewsAutoScheduledImpact').text(`${humanRound(mainData.interviewsAutoScheduledImpact)}`);
-    $('#candidateTouchpointsImpact').text(`${humanRound(mainData.totalTouchPoints)}`);
-    $('#automatedVoiceCallsImpact').text(`${humanRound(mainData.automatedVoiceCallsImpact)}`);
-    $('#manualEffortSavedImpact').text(`${humanRound(mainData.manualEffortSavedImpact)}`);
-    $('#productiveBillableTimeCreatedImpact').text(`${humanRound(mainData.productiveBillableTimeCreatedImpact)}`);
+        animateValue('#profilesAutoSourcedImpact', humanRound(mainData.profilesAutoSourcedImpact), { duration: 600 });
+        animateValue('#profilesMatchedImpact', humanRound(mainData.profilesMatchedImpact), { duration: 600 });
+        animateValue('#prescreeningCompletedImpact', humanRound(mainData.prescreeningCompletedImpact), { duration: 600 });
+        animateValue('#interviewsAutoScheduledImpact', humanRound(mainData.interviewsAutoScheduledImpact), { duration: 600 });
+        animateValue('#candidateTouchpointsImpact', humanRound(mainData.totalTouchPoints), { duration: 700 });
+        animateValue('#automatedVoiceCallsImpact', humanRound(mainData.automatedVoiceCallsImpact), { duration: 600 });
+        animateValue('#manualEffortSavedImpact', humanRound(mainData.manualEffortSavedImpact), { duration: 700 });
+        animateValue('#productiveBillableTimeCreatedImpact', humanRound(mainData.productiveBillableTimeCreatedImpact), { duration: 600 });
+    // } else {
+    //     // Set initial values without animation
+    //     $('#hyreoTokens').text(`$${humanRound(mainData.hyreoTokens)}`);
+    //     $('#externalTokens').text(`$${humanRound(mainData.externalTokens)}`);
+    //     $('#estimatedCost').text(`$${humanRound(mainData.estimatedCost)}`);
+    //     $('#perJobCost').text(`$${humanRound(mainData.perJobCost)}`);
+    //     $('#productivity').text(`$${mainData.productivity}`);
+    //     $('#revenue').text(`$${mainData.revenue}`);
+    //     $('#roi').text(`${mainData.roi}x`);
+    //     $('#profilesAutoSourcedImpact').text(`${humanRound(mainData.profilesAutoSourcedImpact)}`);
+    //     $('#profilesMatchedImpact').text(`${humanRound(mainData.profilesMatchedImpact)}`);
+    //     $('#prescreeningCompletedImpact').text(`${humanRound(mainData.prescreeningCompletedImpact)}`);
+    //     $('#interviewsAutoScheduledImpact').text(`${humanRound(mainData.interviewsAutoScheduledImpact)}`);
+    //     $('#candidateTouchpointsImpact').text(`${humanRound(mainData.totalTouchPoints)}`);
+    //     $('#automatedVoiceCallsImpact').text(`${humanRound(mainData.automatedVoiceCallsImpact)}`);
+    //     $('#manualEffortSavedImpact').text(`${humanRound(mainData.manualEffortSavedImpact)}`);
+    //     $('#productiveBillableTimeCreatedImpact').text(`${humanRound(mainData.productiveBillableTimeCreatedImpact)}`);
+    //     isInitialLoad = false;
+    // }
 }
