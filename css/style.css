@@ -1,5 +1,7 @@
 /* Import Inter font */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
   /* Font sizes - Display */
@@ -150,7 +152,10 @@
 
 /* Apply Inter font globally */
 body {
-  font-family: 'Inter', sans-serif;
+  /* font-family: 'Inter', sans-serif; */
+  /* font-family: 'Raleway', sans-serif; */
+  font-family: "DM Sans", sans-serif;
+  
 }
 
 /* Custom utility classes using CSS variables */
