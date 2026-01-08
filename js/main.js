@@ -1,12 +1,12 @@
 let mainData;
 let stepState = 'step-1';
 const activeClasses = {
-    card: 'bg-[#e6daff] text-[#5e30c2',
-    circle: 'bg-[#5e30c2] text-white'
+    card: 'bg-gradient-to-br from-violet-800  to-violet-600 text-white cursor-default',
+    circle: 'bg-white/20 text-white border border-white/30'
 };
 const completedClasses = {
-    card: 'bg-[#1fad721a] text-[#008046]',
-    circle: 'bg-[#008046] text-white cursor-pointer'
+    card: 'bg-[#1fad721a] text-[#008046] cursor-pointer',
+    circle: 'bg-[#008046] text-white'
 };
 const inactiveClasses = {
     card: 'bg-white text-gray-600 cursor-not-allowed',
@@ -683,7 +683,7 @@ function onSelectStep(stepId) {
         $('#resultsBlock').addClass('hidden');
         $('#currentStateBlock').addClass('hidden');
         $('#solutionsBlock').removeClass('hidden');
-    } else {
+    } else if (stepId == 'step-3') {
         const animatedSelectors = [
             '#hyreoTokens', '#externalTokens', '#estimatedCost', '#perJobCost', 
             '#productivity', '#revenue', 
@@ -707,6 +707,12 @@ function onSelectStep(stepId) {
         $('#currentStateBlock').addClass('hidden');
         $('#resultsBlock').removeClass('hidden');
     }
+    $('html, body').animate(
+        {
+            scrollTop: 0
+        },
+        600
+    );
 }
 
 function setStepState(stepId, state) {
@@ -715,10 +721,10 @@ function setStepState(stepId, state) {
 
     // Reset first (this is critical)
     $card
-        .removeClass('bg-white bg-purple-50 bg-green-50 border-gray-200 border-purple-500 border-green-500 bg-[#e6daff] border-[#b28eff] text-[#5e30c2  bg-[#1fad721a');
+        .removeClass('bg-white bg-purple-50 bg-green-50 border-gray-200 border-purple-500 border-green-500 bg-[#e6daff] border-[#b28eff] text-[#5e30c2  bg-[#1fad721a text-[#008046] bg-gradient-to-br from-violet-800  to-violet-600 text-white cursor-not-allowed cursor-default cursor-pointer');
 
     $circle
-        .removeClass('bg-gray-300 bg-[#5e30c2] bg-green-600 text-white text-gray-700 bg-[#5e30c2] text-white');
+        .removeClass('bg-gray-300 bg-green-600 text-white text-gray-700 text-white bg-[#008046] bg-[#ffffff33] bg-white/20 text-white border border-white/30');
 
     if (state === 'inactive') {
         $card.addClass(inactiveClasses.card);

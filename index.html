@@ -42,7 +42,7 @@
                 </span>
                 <div>
                     <h1 class="text-sm sm:text-b-lg font-bold text-[#5e30c2]">AI Recruiting ROI Calculator</h1>
-                    <p class="text-xs sm:text-sm text-gray-500 hidden sm:block">Quantify AI impact on hiring.</p>
+                    <p class="text-xs sm:text-sm text-gray-500 block">Quantify AI impact on hiring.</p>
                 </div>
             </div>
             <!-- <button
@@ -60,9 +60,9 @@
 
     <!-- Info Banner -->
     <main class="max-w-4xl mx-auto px-4 sm:px-6">
-        <div class="flex justify-center gap-3 items-start sm:items-center border-gray-300 text-xs sm:text-sm py-3 sm:py-4 rounded-md mb-5">
-            <div id="step-1" class="flex items-center gap-3 px-3 py-2 rounded-md bg-white">
-                <div class="step-circle w-7 h-7 rounded-full bg-[#5e30c2] flex items-center justify-center text-xs font-semibold text-white">
+        <div class="flex justify-center gap-3 items-center sm:items-center border-gray-300 text-xs sm:text-sm py-3 sm:py-4 rounded-md mb-5">
+            <div id="step-1" class="flex items-center gap-3 px-3 sm:px-6 py-2 rounded-md bg-white">
+                <div class="step-circle w-7 h-7 rounded-full bg-[#5e30c2] flex items-center justify-center text-xs font-semibold text-white backdrop-blur-lg">
                     1
                 </div>
             
@@ -74,8 +74,8 @@
             <span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#1e2939" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path></svg>
             </span>
-            <div id="step-2" class="flex items-center gap-3 px-3 py-2 rounded-md bg-white">
-                <div class="step-circle w-7 h-7 rounded-full bg-[#5e30c2] flex items-center justify-center text-xs font-semibold text-white">
+            <div id="step-2" class="flex items-center gap-3 px-3 sm:px-6 py-2 rounded-md bg-white">
+                <div class="step-circle w-7 h-7 rounded-full bg-[#5e30c2] flex items-center justify-center text-xs font-semibold text-white backdrop-blur-lg">
                     2
                 </div>
             
@@ -87,8 +87,8 @@
             <span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#1e2939" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path></svg>
             </span>
-            <div id="step-3" class="flex items-center gap-3 px-3 py-2 rounded-md bg-white">
-                <div class="step-circle w-7 h-7 rounded-full bg-[#5e30c2] flex items-center justify-center text-xs font-semibold text-white">
+            <div id="step-3" class="flex items-center gap-3 px-3 sm:px-6 py-2 rounded-md bg-white">
+                <div class="step-circle w-7 h-7 rounded-full bg-[#5e30c2] flex items-center justify-center text-xs font-semibold text-white backdrop-blur-lg">
                     3
                 </div>
             
@@ -113,12 +113,12 @@
             <div class="bg-white max-w-full min-w-fit px-4 py-6 sm:px-8 sm:py-12 mx-auto rounded-lg border-1 border-gray-300 shadow-md mt-6">
                 <div>
                     <p class="text-md font-semibold mb-2">How many positions do you fill per year?</p>
-                    <input id="openPositionsPerYear" type="number" min="10" max="50000" value="1000" class="mt-1 w-[90px] sm:w-full rounded-md px-2 sm:px-3 py-2 text-sm touch-manipulation text-center font-semibold h-[46px] border-[1px] border-gray-300 bg-gray-50 cursor-pointer hover:bg-white active:border-gray-400 focus:outline-none px-md focus:bg-white focus:text-black focus:shadow-md select-none shadow-sm mb-4" />
+                    <input id="openPositionsPerYear" type="number" min="10" max="50000" value="1000" class="mt-1 w-[90px] w-full rounded-md px-2 sm:px-3 py-2 text-sm touch-manipulation text-center font-semibold h-[46px] border-[1px] border-gray-300 bg-gray-50 cursor-pointer hover:bg-white active:border-gray-400 focus:outline-none px-md focus:bg-white focus:text-black focus:shadow-md select-none shadow-sm mb-4" />
                     <p class="text-xs font-regular text-gray-500 text-center">Enter the total number of positions you expect to fill annually</p>
                 </div>
                 <hr class="border-1 border-gray-300 my-6">
                 <div>
-                    <p class="text-xs font-medium text-gray-600">Quick select:</p>
+                    <p class="text-xs font-medium text-gray-600 mb-3">Quick select:</p>
                     <div class="flex items-center justify-center gap-3 flex-wrap">
                         <button class="op-btn px-4 py-2 rounded-md bg-gray-100 text-gray-500 font-semibold text-sm" value="50">50</button>
                         <button class="op-btn px-4 py-2 rounded-md bg-gray-100 text-gray-500 font-semibold text-sm" value="100">100</button>
@@ -368,8 +368,8 @@
                 <p class="text-md font-regular text-gray-500 text-center">Based on your inputs, here's what you can expect from implementing our platform. These projections are defensible and ready to share with leadership.</p>
             </div>
             <div class="max-w-full min-w-fit mx-auto mt-6">
-                <div class="w-full grid grid-cols-[1.5fr_1fr] gap-6">
-                    <div class="bg-gradient-to-br from-violet-800  to-violet-600 rounded-xl p-4 sm:p-5 shadow-lg">
+                <div class="w-full grid grid-cols-[1fr] sm:grid-cols-[1.5fr_1fr] gap-6">
+                    <div class="bg-gradient-to-br from-violet-800  to-violet-600 rounded-xl p-4 sm:p-5">
                         <div class="flex items-center gap-2 sm:gap-3">
                             <span class="bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg p-2 sm:p-3 flex-shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ffffff" viewBox="0 0 256 256" class="sm:w-6 sm:h-6"><path d="M152,116H140V60h4a28,28,0,0,1,28,28,12,12,0,0,0,24,0,52.06,52.06,0,0,0-52-52h-4V24a12,12,0,0,0-24,0V36h-4a52,52,0,0,0,0,104h4v56H104a28,28,0,0,1-28-28,12,12,0,0,0-24,0,52.06,52.06,0,0,0,52,52h12v12a12,12,0,0,0,24,0V220h12a52,52,0,0,0,0-104Zm-40,0a28,28,0,0,1,0-56h4v56Zm40,80H140V140h12a28,28,0,0,1,0,56Z"></path></svg>
@@ -395,8 +395,8 @@
                     </div>
 
                     <div class="grid grid-cols-auto grid-rows-2 gap-5">
-                        <div class=" shadow-lg rounded-xl p-3 sm:p-4 border-1 border-[#1fad7233] bg-[#e5fff2] text-[#008046]">
-                            <div class="flex items-center gap-2 sm:gap-3">
+                        <div class="rounded-xl p-3 sm:p-4 border-1 border-[#1fad7233] bg-[#e5fff2] text-[#008046]">
+                            <div class="flex items-start gap-2 sm:gap-3">
                                 <span class="rounded-full bg-[#1fad7233] p-1.5 sm:p-2 flex-shrink-0">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#008046" viewBox="0 0 256 256" class="sm:w-5 sm:h-5"><path d="M219.71,117.38a12,12,0,0,0-7.25-8.52L161.28,88.39l10.59-70.61a12,12,0,0,0-20.64-10l-112,120a12,12,0,0,0,4.31,19.33l51.18,20.47L84.13,238.22a12,12,0,0,0,20.64,10l112-120A12,12,0,0,0,219.71,117.38ZM113.6,203.55l6.27-41.77a12,12,0,0,0-7.41-12.92L68.74,131.37,142.4,52.45l-6.27,41.77a12,12,0,0,0,7.41,12.92l43.72,17.49Z"></path></svg>
                                 </span>
@@ -407,8 +407,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class=" shadow-lg rounded-xl p-3 sm:p-4 border-1 border-[#1fad7233] bg-[#e5fff2] text-[#008046]">
-                            <div class="flex items-center gap-2 sm:gap-3">
+                        <div class="rounded-xl p-3 sm:p-4 border-1 border-[#1fad7233] bg-[#e5fff2] text-[#008046]">
+                            <div class="flex items-start gap-2 sm:gap-3">
                                 <span class="rounded-full bg-[#1fad7233] p-1.5 sm:p-2 flex-shrink-0">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#008046" viewBox="0 0 256 256" class="sm:w-5 sm:h-5"><path d="M232.76,137.88A28.39,28.39,0,0,0,208.13,133L172,141.26c0-.42,0-.84,0-1.26a32,32,0,0,0-32-32H89.94a35.76,35.76,0,0,0-25.45,10.54L43,140H20A20,20,0,0,0,0,160v40a20,20,0,0,0,20,20H120a11.89,11.89,0,0,0,2.91-.36l64-16a11.4,11.4,0,0,0,1.79-.6l38.82-16.54c.23-.09.45-.19.67-.3a28.61,28.61,0,0,0,4.57-48.32ZM36,196H24V164H36Zm181.68-31.39-37.51,16L118.52,196H60V157l21.46-21.46A11.93,11.93,0,0,1,89.94,132H140a8,8,0,0,1,0,16H112a12,12,0,0,0,0,24h32a12.19,12.19,0,0,0,2.69-.3l67-15.41.47-.12a4.61,4.61,0,0,1,5.82,4.44A4.58,4.58,0,0,1,217.68,164.61ZM164,100a40.36,40.36,0,0,0,5.18-.34,40,40,0,1,0,29.67-59.32A40,40,0,1,0,164,100Zm40-36a16,16,0,1,1-16,16A16,16,0,0,1,204,64ZM164,44a16,16,0,0,1,12.94,6.58A39.9,39.9,0,0,0,164.2,76H164a16,16,0,0,1,0-32Z"></path></svg>
                                 </span>
@@ -424,7 +424,7 @@
                 </div>
 
                 <div>
-                    <div class="flex items-center gap-2 mt-8 mb-3 sm:mt-10 sm:mb-5">
+                    <div class="flex items-center gap-2 mt-8 mb-3 sm:mt-10">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5e30c2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-5 w-5 text-primary"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
                         </span>
@@ -432,7 +432,7 @@
                     </div>
                     <div class="w-full">
                         <p class="text-sm font-medium text-left">Based on your inputs and assumptions, here's your projected ROI:</p>
-                        <div class="w-full mt-6 grid grid-cols-3 grid-rows-auto gap-4">
+                        <div class="w-full mt-6 grid grid-cols-1 sm:grid-cols-3 grid-rows-auto gap-4">
                             <div class="rounded-lg border-1 border-gray-300 px-6 pb-4 pt-6 bg-[#eff0f3] text-[#627083]">
                                 <div class="flex gap-3">
                                     <span>
@@ -524,7 +524,7 @@
                 </div>
 
                 <div class="flex justify-center gap-4">
-                    <button onclick="onSelectStep('step-3')" type="button" class="mt-6 px-4 py-2 rounded-lg border-1 border-[#5e30c2] text-[#5e30c2] bg-transparent cursor-pointer shadow-sm hover:shadow-md hover:border-[#5e30c2]/80">
+                    <button onclick="onSelectStep('step-2')" type="button" class="mt-6 px-4 py-2 rounded-lg border-1 border-[#5e30c2] text-[#5e30c2] bg-transparent cursor-pointer shadow-sm hover:shadow-md hover:border-[#5e30c2]/80">
                         Back
                     </button>
                     <button onclick="onSelectStep('step-3')" type="button" class="mt-6 px-4 py-2 rounded-lg bg-[#5e30c2] text-white cursor-pointer shadow-sm hover:shadow-md hover:bg-[#5e30c2]/80">
