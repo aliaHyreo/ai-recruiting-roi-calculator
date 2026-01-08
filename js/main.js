@@ -684,6 +684,20 @@ function onSelectStep(stepId) {
         $('#currentStateBlock').addClass('hidden');
         $('#solutionsBlock').removeClass('hidden');
     } else {
+        const animatedSelectors = [
+            '#hyreoTokens', '#externalTokens', '#estimatedCost', '#perJobCost', 
+            '#productivity', '#revenue', 
+            '#roi', '#roi-optimistic', '#roi-realistic', '#roi-conservative',
+            '#profilesAutoSourcedImpact', '#profilesMatchedImpact', 
+            '#prescreeningCompletedImpact', '#interviewsAutoScheduledImpact', 
+            '#candidateTouchpointsImpact', '#automatedVoiceCallsImpact', 
+            '#manualEffortSavedImpact', '#productiveBillableTimeCreatedImpact'
+        ];
+        
+        animatedSelectors.forEach(selector => {
+            $(selector).text('0');
+        });
+
         Calculations();
         setStepState('step-1', 'completed');
         setStepState('step-2', 'completed');
