@@ -1,5 +1,5 @@
 let mainData;
-let stepState = 'step-1';
+let stepState;
 const activeClasses = {
     card: 'bg-gradient-to-r from-cyan-400 to-blue-500 text-white cursor-default',
     circle: 'bg-white/20 text-white border border-white/30'
@@ -36,7 +36,10 @@ $(document).ready(function () {
         getProjectedTalentPipelineValues(Number($('#openPositionsPerYear').val()));
     });
 
-    onSelectStep('step-1');
+    // onSelectStep('step-1');
+    setStepState('step-1', 'active');
+    setStepState('step-2', 'inactive');
+    setStepState('step-3', 'inactive');
 
     $('#painPointsBtn').on('click', function () {
         $('#painPointsBlock').slideToggle();
@@ -665,8 +668,27 @@ function onSelectOpenPositionsPerYear(value) {
     }
 }
 
+const allowedTransitions = {
+    'step-1': [],                 // cannot jump to step-3
+    'step-2': ['step-1'],       // can go both ways
+    'step-3': ['step-2', 'step-1'],       // can go back
+};
+
+function onSelectStepTab(stepId) {
+    if (!stepState) {
+        stepState = 'step-1';
+    }
+
+    if (!allowedTransitions[stepState].includes(stepId)) {
+        console.warn(`Blocked transition from ${stepState} → ${stepId}`);
+        return;
+    }
+
+    onSelectStep(stepId)
+}
 
 function onSelectStep(stepId) {
+
     if (stepId == 'step-1') {
         setStepState('step-1', 'active');
         setStepState('step-2', 'inactive');
@@ -713,6 +735,7 @@ function onSelectStep(stepId) {
         },
         600
     );
+    stepState = stepId;
 }
 
 function setStepState(stepId, state) {
