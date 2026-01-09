@@ -1,7 +1,7 @@
 let mainData;
 let stepState = 'step-1';
 const activeClasses = {
-    card: 'bg-gradient-to-br from-violet-800  to-violet-600 text-white cursor-default',
+    card: 'bg-gradient-to-r from-cyan-400 to-blue-500 text-white cursor-default',
     circle: 'bg-white/20 text-white border border-white/30'
 };
 const completedClasses = {
@@ -631,7 +631,7 @@ $('#openPositionsPerYear').on('input', function () {
         return;
     };
     $('.op-btn')
-        .removeClass('bg-[#5e30c2] text-white')
+        .removeClass('bg-gradient-to-r from-cyan-400 to-blue-500 text-white')
         .addClass('bg-gray-100 text-gray-500');
 
     onSelectOpenPositionsPerYear(value);
@@ -643,7 +643,7 @@ $('.op-btn').on('click', function () {
         return;
     };
     $('.op-btn')
-        .removeClass('bg-[#5e30c2] text-white')
+        .removeClass('bg-gradient-to-r from-cyan-400 to-blue-500 text-white')
         .addClass('bg-gray-100 text-gray-500');
 
     onSelectOpenPositionsPerYear(value);
@@ -657,10 +657,10 @@ function onSelectOpenPositionsPerYear(value) {
     if ([50,100,250,300,400,500,1000].includes(Number(value))) {
         $(`.op-btn[value="${value}"]`)
             .removeClass('bg-gray-100 text-gray-500')
-            .addClass('bg-[#5e30c2] text-white');
+            .addClass('bg-gradient-to-r from-cyan-400 to-blue-500 text-white');
     } else{
         $('.op-btn')
-            .removeClass('bg-[#5e30c2] text-white')
+            .removeClass('bg-gradient-to-r from-cyan-400 to-blue-500 text-white')
             .addClass('bg-gray-100 text-gray-500');
     }
 }
@@ -721,7 +721,7 @@ function setStepState(stepId, state) {
 
     // Reset first (this is critical)
     $card
-        .removeClass('bg-white bg-purple-50 bg-green-50 border-gray-200 border-purple-500 border-green-500 bg-[#e6daff] border-[#b28eff] text-[#5e30c2  bg-[#1fad721a text-[#008046] bg-gradient-to-br from-violet-800  to-violet-600 text-white cursor-not-allowed cursor-default cursor-pointer');
+        .removeClass('bg-white bg-purple-50 bg-green-50 border-gray-200 border-purple-500 border-green-500 bg-[#e6daff] border-[#b28eff] text-[#5e30c2  bg-[#1fad721a text-[#008046] bg-gradient-to-r from-cyan-400 to-blue-500 text-white cursor-not-allowed cursor-default cursor-pointer');
 
     $circle
         .removeClass('bg-gray-300 bg-green-600 text-white text-gray-700 text-white bg-[#008046] bg-[#ffffff33] bg-white/20 text-white border border-white/30');
