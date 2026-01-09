@@ -529,6 +529,11 @@ function Calculations() {
     mainData.touchPointsTotalVoiceAgent = (mainData.touchPointsHyreoTalentNetworkVoiceAgent + mainData.touchPointsMatchingAndOutreachVoiceAgent + mainData.touchPointsAgentsVoiceAgent + mainData.touchPointsSchedulerVoiceAgent + mainData.touchPointsEngagementVoiceAgent);
     mainData.touchPointsTotalChatAgent = (mainData.touchPointsHyreoTalentNetworkChatAgent + mainData.touchPointsMatchingAndOutreachChatAgent + mainData.touchPointsAgentsChatAgent + mainData.touchPointsSchedulerChatAgent + mainData.touchPointsEngagementChatAgent);
     mainData.totalTouchPoints = (mainData.touchPointsTotalEmailRecruiters + mainData.touchPointsTotalEmailCandidates + mainData.touchPointsTotalSms + mainData.touchPointsTotalWhatsapp + mainData.touchPointsTotalVoiceAgent + mainData.touchPointsTotalChatAgent);
+    if (mainData.totalTouchPoints == 0) {
+        $('#candidateTouchpointsImpactContainer').addClass('hidden');
+    } else {
+        $('#candidateTouchpointsImpactContainer').removeClass('hidden');
+    }
     // TouchPoints
 
     // ROI Engagement
@@ -581,8 +586,47 @@ function Calculations() {
     mainData.roiConservative = mainData.roi * (60/100);
 
     mainData.automatedVoiceCallsImpact = humanRound((mainData.touchPointsTotalVoiceAgent * mainData.postOfferAverageCallDurationInMins) / 60);
+    if (mainData.automatedVoiceCallsImpact == 0) {
+        $('#automatedVoiceCallsImpactContainer').addClass('hidden');
+    } else {
+        $('#automatedVoiceCallsImpactContainer').removeClass('hidden');
+    }
     mainData.manualEffortSavedImpact = mainData.totalEffortSaved + mainData.effortSavedPofuInHours + mainData.effortSavingsInHours + mainData.effortSavedInHours + mainData.totalEffortsInHours;
+    if (mainData.manualEffortSavedImpact == 0) {
+        $('#manualEffortSavedImpactContainer').addClass('hidden');
+    } else {
+        $('#manualEffortSavedImpactContainer').removeClass('hidden');
+    }
     mainData.productiveBillableTimeCreatedImpact = mainData.realisedRevenueTotalAdditionalBillableHours;
+    if (mainData.productiveBillableTimeCreatedImpact == 0) {
+        $('#productiveBillableTimeCreatedImpactContainer').addClass('hidden');
+    } else {
+        $('#productiveBillableTimeCreatedImpactContainer').removeClass('hidden');
+    }
+
+    if (mainData.interviewsAutoScheduledImpact == 0) {
+        $('#interviewsAutoScheduledImpactContainer').addClass('hidden');
+    } else {
+        $('#interviewsAutoScheduledImpactContainer').removeClass('hidden');
+    }
+
+    if (mainData.prescreeningCompletedImpact == 0) {
+        $('#prescreeningCompletedImpactContainer').addClass('hidden');
+    } else {
+        $('#prescreeningCompletedImpactContainer').removeClass('hidden');
+    }
+
+    if (mainData.profilesMatchedImpact == 0) {
+        $('#profilesMatchedImpactContainer').addClass('hidden');
+    } else {
+        $('#profilesMatchedImpactContainer').removeClass('hidden');
+    }
+
+    if (mainData.profilesAutoSourcedImpact == 0) {
+        $('#profilesAutoSourcedImpactContainer').addClass('hidden');
+    } else {
+        $('#profilesAutoSourcedImpactContainer').removeClass('hidden');
+    }
 
     console.log('mainData', mainData);
 
@@ -626,6 +670,16 @@ function Calculations() {
     //     $('#productiveBillableTimeCreatedImpact').text(`${humanRound(mainData.productiveBillableTimeCreatedImpact)}`);
     //     isInitialLoad = false;
     // }
+
+    const features = {
+        checkboxHyreoTalentNetwork: true,
+        checkboxAutomatedResumeMatchingWithJd: true,
+        checkboxPreScreeningWithAiAgents: true,
+        checkboxAutomatedInterviewScheduler: true,
+        checkboxPostOfferCandidateEngagement: true
+    };          
+    const selectedModulesCount = Object.values(mainData).filter(v => v === true).length;
+    $('#countSolutionsSelected').text(selectedModulesCount);
 }
 
 $('#openPositionsPerYear').on('input', function () {
