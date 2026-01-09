@@ -721,7 +721,7 @@ function setStepState(stepId, state) {
 
     // Reset first (this is critical)
     $card
-        .removeClass('bg-white bg-purple-50 bg-green-50 border-gray-200 border-purple-500 border-green-500 bg-[#e6daff] border-[#b28eff] text-[#5e30c2  bg-[#1fad721a text-[#008046] bg-gradient-to-r from-cyan-400 to-blue-500 text-white cursor-not-allowed cursor-default cursor-pointer');
+        .removeClass('bg-white bg-purple-50 bg-green-50 border-gray-200 border-purple-500 border-green-500 bg-[#e6daff] bg-[#1fad721a text-[#008046] bg-gradient-to-r from-cyan-400 to-blue-500 text-white cursor-not-allowed cursor-default cursor-pointer text-gray-600');
 
     $circle
         .removeClass('bg-gray-300 bg-green-600 text-white text-gray-700 text-white bg-[#008046] bg-[#ffffff33] bg-white/20 text-white border border-white/30');
