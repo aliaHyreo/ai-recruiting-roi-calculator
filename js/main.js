@@ -5,7 +5,7 @@ const activeClasses = {
     circle: 'bg-white/20 text-white border border-white/30'
 };
 const completedClasses = {
-    card: 'bg-[#1fad721a] text-[#008046] cursor-pointer',
+    card: 'bg-[#1fad721a] text-[#008046]',
     circle: 'bg-[#008046] text-white'
 };
 const inactiveClasses = {
@@ -120,52 +120,61 @@ function getProjectedTalentPipelineValues(value) {
     // if (!isInitialLoad) {
     // animateValue('#projectedTalentPipeline #hired', hiredValue, { duration: 600 });
     // } else {
-        $('#projectedTalentPipeline #hired').text(hiredValue);
+    $('#projectedTalentPipeline #hired').text(hiredValue);
     // }
 
     mainData.offeredCandidates = roundDecimal(mainData.openPositionsPerYear / ($('#offerConfirmationInput').val() / 100), 2);
     // if (!isInitialLoad) {
     // animateValue('#projectedTalentPipeline #offeredCandidates', humanRound(mainData.offeredCandidates), { duration: 600 });
     // } else {
-        $('#projectedTalentPipeline #offeredCandidates').text(humanRound(mainData.offeredCandidates));
+    $('#projectedTalentPipeline #offeredCandidates').text(humanRound(mainData.offeredCandidates));
     // }
 
     mainData.shortlistedForInterviews = roundDecimal(mainData.offeredCandidates / ($('#interviewedCandidatesOfferedInput').val() / 100), 2);
     // if (!isInitialLoad) {
     // animateValue('#projectedTalentPipeline #shortlistedForInterviews', humanRound(mainData.shortlistedForInterviews), { duration: 600 });
     // } else {
-        $('#projectedTalentPipeline #shortlistedForInterviews').text(humanRound(mainData.shortlistedForInterviews));
+    $('#projectedTalentPipeline #shortlistedForInterviews').text(humanRound(mainData.shortlistedForInterviews));
     // }
 
     mainData.prescreeningCompleted = roundDecimal(mainData.shortlistedForInterviews / ($('#preScreenedCandidatesInterviewedInput').val() / 100), 2);
     // if (!isInitialLoad) {
     // animateValue('#projectedTalentPipeline #prescreeningCompleted', humanRound(mainData.prescreeningCompleted), { duration: 600 });
     // } else {
-        $('#projectedTalentPipeline #prescreeningCompleted').text(humanRound(mainData.prescreeningCompleted));
+    $('#projectedTalentPipeline #prescreeningCompleted').text(humanRound(mainData.prescreeningCompleted));
     // }
 
     mainData.applicants = roundDecimal(mainData.prescreeningCompleted / ($('#applicantsPreScreenedInput').val() / 100), 2);
     // if (!isInitialLoad) {
     // animateValue('#projectedTalentPipeline #applicants', humanRound(mainData.applicants), { duration: 600 });
     // } else {
-        $('#projectedTalentPipeline #applicants').text(humanRound(mainData.applicants));
+    $('#projectedTalentPipeline #applicants').text(humanRound(mainData.applicants));
     // }
 
     mainData.resumeMatching = roundDecimal(mainData.applicants / ($('#applicantsResumeMatchingInput').val() / 100), 2);
     // if (!isInitialLoad) {
     // animateValue('#projectedTalentPipeline #resumeMatching', humanRound(mainData.resumeMatching), { duration: 600 });
     // } else {
-        $('#projectedTalentPipeline #resumeMatching').text(humanRound(mainData.resumeMatching));
+    $('#projectedTalentPipeline #resumeMatching').text(humanRound(mainData.resumeMatching));
     // }
 
     mainData.hyreoSourcedProfiles = roundDecimal(mainData.applicants * ($('#sourcedViaHyreoTalentNetworkInput').val() / 100), 2);
     // if (!isInitialLoad) {
     // animateValue('#projectedTalentPipeline #hyreoSourcedProfiles', humanRound(mainData.hyreoSourcedProfiles), { duration: 600 });
     // } else {
-        $('#projectedTalentPipeline #hyreoSourcedProfiles').text(humanRound(mainData.hyreoSourcedProfiles));
+    $('#projectedTalentPipeline #hyreoSourcedProfiles').text(humanRound(mainData.hyreoSourcedProfiles));
     // }
 
-    Calculations();
+    // Calculations();
+
+    return {
+        hired: hiredValue,
+        interviewedCandidatesOffered: mainData.offeredCandidates,
+        preScreenedCandidatesInterviewed: mainData.shortlistedForInterviews,
+        applicantsPreScreened: mainData.prescreeningCompleted,
+        applicantsResumeMatching: mainData.applicants,
+        hyreoSourcedProfiles: mainData.hyreoSourcedProfiles,
+    };
 }
 
 $('#sourcedViaHyreoTalentNetworkInput').on('input', function () {
@@ -566,7 +575,7 @@ function Calculations() {
 
     const allModulesNotSelectedFlag = (mainData.checkboxHyreoTalentNetwork || mainData.checkboxAutomatedResumeMatchingWithJd || mainData.checkboxPreScreeningWithAiAgents || mainData.checkboxAutomatedInterviewScheduler || mainData.checkboxPostOfferCandidateEngagement);
     console.log('allModulesNotSelectedFlag', allModulesNotSelectedFlag);
-    console.log(mainData.hyreoTokensTotalUsd )
+    console.log(mainData.hyreoTokensTotalUsd)
 
     //HyreoTalentNetwork
     mainData.hyreoTokensTotalInr = mainData.hyreoTokensFixedCost + mainData.hyreoTokensSubscriptionCostInr;
@@ -582,8 +591,8 @@ function Calculations() {
     mainData.roi = humanRound(mainData.productivity / (mainData.hyreoTokens + mainData.externalTokens));
 
     mainData.roiOptimistic = mainData.roi;
-    mainData.roiRealistic = mainData.roi * (80/100);
-    mainData.roiConservative = mainData.roi * (60/100);
+    mainData.roiRealistic = mainData.roi * (80 / 100);
+    mainData.roiConservative = mainData.roi * (60 / 100);
 
     mainData.automatedVoiceCallsImpact = humanRound((mainData.touchPointsTotalVoiceAgent * mainData.postOfferAverageCallDurationInMins) / 60);
     if (mainData.automatedVoiceCallsImpact == 0) {
@@ -641,7 +650,10 @@ function Calculations() {
     animateValue('#roi', mainData.roi, { hasX: true, duration: 800, easing: 'easeOutExpo' });
     animateValue('#roi-optimistic', mainData.roiOptimistic, { hasX: true, duration: 800, easing: 'easeOutExpo' });
     animateValue('#roi-realistic', mainData.roiRealistic, { hasX: true, duration: 800, easing: 'easeOutExpo' });
+    animateValue('#roi-realistic', mainData.roiRealistic, { hasX: true, duration: 800, easing: 'easeOutExpo' });
     animateValue('#roi-conservative', mainData.roiConservative, { hasX: true, duration: 800, easing: 'easeOutExpo' });
+
+    updateFunnelChart();
 
     animateValue('#profilesAutoSourcedImpact', humanRound(mainData.profilesAutoSourcedImpact), { duration: 600 });
     animateValue('#profilesMatchedImpact', humanRound(mainData.profilesMatchedImpact), { duration: 600 });
@@ -677,7 +689,7 @@ function Calculations() {
         checkboxPreScreeningWithAiAgents: true,
         checkboxAutomatedInterviewScheduler: true,
         checkboxPostOfferCandidateEngagement: true
-    };          
+    };
     const selectedModulesCount = Object.values(mainData).filter(v => v === true).length;
     $('#countSolutionsSelected').text(selectedModulesCount);
 }
@@ -695,7 +707,7 @@ $('#openPositionsPerYear').on('input', function () {
 });
 
 $('.op-btn').on('click', function () {
-    const value = Number($(this).val()); 
+    const value = Number($(this).val());
     if (mainData.openPositionsPerYear === value) {
         return;
     };
@@ -707,15 +719,16 @@ $('.op-btn').on('click', function () {
 });
 
 function onSelectOpenPositionsPerYear(value) {
-    $('#openPositionsPerYear').val(value);
     mainData.openPositionsPerYear = value;
+    $('#openPositionsPerYear').val(value).trigger('input');
     getProjectedTalentPipelineValues(mainData.openPositionsPerYear);
+    Calculations();
 
-    if ([50,100,250,300,400,500,1000].includes(Number(value))) {
+    if ([50, 100, 250, 300, 400, 500, 1000].includes(Number(value))) {
         $(`.op-btn[value="${value}"]`)
             .removeClass('bg-gray-100 text-gray-500')
             .addClass('bg-gradient-to-r from-cyan-400 to-blue-500 text-white');
-    } else{
+    } else {
         $('.op-btn')
             .removeClass('bg-gradient-to-r from-cyan-400 to-blue-500 text-white')
             .addClass('bg-gray-100 text-gray-500');
@@ -724,8 +737,8 @@ function onSelectOpenPositionsPerYear(value) {
 
 const allowedTransitions = {
     'step-1': [],                 // cannot jump to step-3
-    'step-2': ['step-1'],       // can go both ways
-    'step-3': ['step-2', 'step-1'],       // can go back
+    'step-2': [],       // can go both ways
+    'step-3': [],       // can go back
 };
 
 function onSelectStepTab(stepId) {
@@ -761,15 +774,15 @@ function onSelectStep(stepId) {
         $('#solutionsBlock').removeClass('hidden');
     } else if (stepId == 'step-3') {
         const animatedSelectors = [
-            '#hyreoTokens', '#externalTokens', '#estimatedCost', '#perJobCost', 
-            '#productivity', '#revenue', 
+            '#hyreoTokens', '#externalTokens', '#estimatedCost', '#perJobCost',
+            '#productivity', '#revenue',
             '#roi', '#roi-optimistic', '#roi-realistic', '#roi-conservative',
-            '#profilesAutoSourcedImpact', '#profilesMatchedImpact', 
-            '#prescreeningCompletedImpact', '#interviewsAutoScheduledImpact', 
-            '#candidateTouchpointsImpact', '#automatedVoiceCallsImpact', 
+            '#profilesAutoSourcedImpact', '#profilesMatchedImpact',
+            '#prescreeningCompletedImpact', '#interviewsAutoScheduledImpact',
+            '#candidateTouchpointsImpact', '#automatedVoiceCallsImpact',
             '#manualEffortSavedImpact', '#productiveBillableTimeCreatedImpact'
         ];
-        
+
         animatedSelectors.forEach(selector => {
             $(selector).text('0');
         });
@@ -782,6 +795,7 @@ function onSelectStep(stepId) {
         $('#solutionsBlock').addClass('hidden');
         $('#currentStateBlock').addClass('hidden');
         $('#resultsBlock').removeClass('hidden');
+        toggleAdjustSidebar();
     }
     $('html, body').animate(
         {
@@ -817,4 +831,347 @@ function setStepState(stepId, state) {
         $card.addClass(completedClasses.card);
         $circle.addClass(completedClasses.circle);
     }
+}
+
+// ==========================================
+// Adjust Parameters Sidebar Logic
+// ==========================================
+
+const adjustIdsMap = {
+    // Inputs (Pain Points / Sliders)
+    'sourcedViaHyreoTalentNetworkInput': 'sourcedViaHyreoTalentNetworkInput_Adjust',
+    'applicantsResumeMatchingInput': 'applicantsResumeMatchingInput_Adjust',
+    'applicantsPreScreenedInput': 'applicantsPreScreenedInput_Adjust',
+    'preScreenedCandidatesInterviewedInput': 'preScreenedCandidatesInterviewedInput_Adjust',
+    'interviewRoundsInput': 'interviewRoundsInput_Adjust',
+    'interviewedCandidatesOfferedInput': 'interviewedCandidatesOfferedInput_Adjust',
+    'offerConfirmationInput': 'offerConfirmationInput_Adjust',
+
+    // Checkboxes (Solutions)
+    'hyreoTalentNetworkCheckBox': 'hyreoTalentNetworkCheckBox_Adjust',
+    'automatedResumeMatchingWithJdCheckBox': 'automatedResumeMatchingWithJdCheckBox_Adjust',
+    'preScreeningWithAiAgentsCheckBox': 'preScreeningWithAiAgentsCheckBox_Adjust',
+    'automatedInterviewSchedulerCheckBox': 'automatedInterviewSchedulerCheckBox_Adjust',
+    'postOfferCandidatesEngagementCheckBox': 'postOfferCandidatesEngagementCheckBox_Adjust',
+
+    // Open Positions (Special Case)
+    'openPositionsPerYear': 'openPositionsPerYear_Adjust'
+};
+
+const adjustPercentageIdsMap = {
+    'sourcedViaHyreoTalentNetworkInput': 'sourcedViaHyreoTalentNetwork_Adjust',
+    'applicantsResumeMatchingInput': 'applicantsResumeMatching_Adjust',
+    'applicantsPreScreenedInput': 'applicantsPreScreened_Adjust',
+    'preScreenedCandidatesInterviewedInput': 'preScreenedCandidatesInterviewed_Adjust',
+    'interviewRoundsInput': 'interviewRounds_Adjust',
+    'interviewedCandidatesOfferedInput': 'interviewedCandidatesOffered_Adjust',
+    'offerConfirmationInput': 'offerConfirmation_Adjust'
+};
+
+
+$(document).ready(function () {
+    initAdjustSidebar();
+});
+
+
+function initAdjustSidebar() {
+    // 1. Setup Toggle Button
+    $('#adjustBtn').on('click', toggleAdjustSidebar);
+
+    // 2. Setup Syncing Logic
+    Object.keys(adjustIdsMap).forEach(originalId => {
+        const adjustId = adjustIdsMap[originalId];
+        const $original = $('#' + originalId);
+        const $adjust = $('#' + adjustId);
+
+        // A. Sync from Original to Adjust (Initial & Dynamic)
+        // Set Initial Value
+        syncValueToAdjust($original, $adjust, originalId);
+
+        // Listen for changes on Original input (if user goes back and changes things)
+        $original.on('input change', function () {
+            syncValueToAdjust($(this), $adjust, originalId);
+        });
+
+        // B. Sync from Adjust to Original (User interaction in Sidebar)
+        $adjust.on('input change', function () {
+            const val = $(this).prop('type') === 'checkbox' ? $(this).is(':checked') : $(this).val();
+
+            // Update Original Element
+            if ($original.prop('type') === 'checkbox') {
+                $original.prop('checked', val).trigger('change');
+            } else {
+                $original.val(val).trigger('input');
+            }
+
+            // Update Adjust UI (percentage labels)
+            updateAdjustLabel(originalId, val);
+
+            // Special handling for range background (blue fill)
+            if ($adjust.attr('type') === 'range') {
+                updateRangeFill($adjust[0]);
+            }
+        });
+
+        // Initial Range Fill update
+        if ($adjust.attr('type') === 'range') {
+            updateRangeFill($adjust[0]);
+        }
+    });
+}
+
+function syncValueToAdjust($original, $adjust, originalId) {
+    let val;
+    if ($original.prop('type') === 'checkbox') {
+        val = $original.is(':checked');
+        $adjust.prop('checked', val);
+    } else {
+        val = $original.val();
+        $adjust.val(val);
+    }
+    updateAdjustLabel(originalId, val);
+
+    if ($adjust.attr('type') === 'range') {
+        updateRangeFill($adjust[0]);
+    }
+}
+
+// ==========================================
+// Funnel Chart Logic
+// ==========================================
+
+function updateFunnelChart() {
+    // Pipeline Data Points - Recalculate based on current Open Positions
+    // We reuse the existing logic function: getProjectedTalentPipelineValues(openPositions)
+    // But we need to make sure we have access to it or its result.
+    // mainData.openPositionsPerYear should be up to date.
+
+    const pipelineData = getProjectedTalentPipelineValues(mainData.openPositionsPerYear || 0);
+
+    showChart(pipelineData);
+
+    // Update Text
+    // $('#funnelApplicants').text(parseInt(applicants).toLocaleString());
+    // $('#funnelPrescreened').text(parseInt(prescreened).toLocaleString());
+    // $('#funnelShortlisted').text(parseInt(shortlisted).toLocaleString());
+    // $('#funnelOffered').text(parseInt(offered).toLocaleString());
+    // $('#funnelHired').text(parseInt(hired).toLocaleString());
+    // $('#funnelHyreoSourcedProfiles').text(parseInt(hyreoSourcedProfiles).toLocaleString());
+
+    // Widths are now fixed in HTML for the "funnel" visual effect.
+    // $('#funnelBarApplicants').css('width', '100%');
+    // $('#funnelBarPreScreened').css('width', '80%');
+    // $('#funnelBarShortlisted').css('width', '60%');
+    // $('#funnelBarOffered').css('width', '40%');
+    // $('#funnelBarHired').css('width', 'fit-content');
+}
+
+
+function updateAdjustLabel(originalId, value) {
+    if (adjustPercentageIdsMap[originalId]) {
+        $('#' + adjustPercentageIdsMap[originalId]).text(value);
+    }
+}
+
+function toggleAdjustSidebar() {
+    const ACTIVE_CLASSES =
+    'bg-gradient-to-r from-cyan-400 to-blue-500 text-white border-none shadow-md';
+
+    const INACTIVE_CLASSES =
+    'bg-transparent text-gray-500 border border-gray-300 shadow-none';
+    const $btn = $('#adjustBtn');
+    const $sidebar = $('#adjustSidebar');
+    const $grid = $('#resultsGrid');
+
+    if ($sidebar.hasClass('hidden')) {
+        // Show Sidebar
+        $sidebar.removeClass('hidden');
+        $btn
+            .removeClass(INACTIVE_CLASSES)
+            .addClass(ACTIVE_CLASSES);
+        // Change grid to 3 columns: [1fr_1.5fr_1fr] -> Sidebar Results Impact
+        // Original was: lg:grid-cols-[1.5fr_1fr]
+        // With Sidebar: lg:grid-cols-[1fr_1.5fr_1fr]
+
+        $grid.removeClass('lg:grid-cols-[1.5fr_1fr]').addClass('lg:grid-cols-[1fr_1.5fr_1fr]');
+
+    } else {
+        // Hide Sidebar
+        $btn
+            .removeClass(ACTIVE_CLASSES)
+            .addClass(INACTIVE_CLASSES);
+        $sidebar.addClass('hidden');
+        $grid.removeClass('lg:grid-cols-[1fr_1.5fr_1fr]').addClass('lg:grid-cols-[1.5fr_1fr]');
+    }
+}
+
+function updateRangeFill(rangeInput) {
+    const min = rangeInput.min || 0;
+    const max = rangeInput.max || 100;
+    const val = rangeInput.value;
+    const percentage = ((val - min) / (max - min)) * 100;
+
+    rangeInput.style.background = `linear-gradient(to right, #3ac7f1 ${percentage}%, #e5e7eb ${percentage}%)`;
+}
+
+// function showChart(pipelineData) {
+//     const hired = pipelineData.hired;
+//     const offered = pipelineData.interviewedCandidatesOffered;
+//     const shortlisted = pipelineData.preScreenedCandidatesInterviewed;
+//     const prescreened = pipelineData.applicantsPreScreened;
+//     const applicants = pipelineData.applicantsResumeMatching;
+//     const hyreoSourcedProfiles = pipelineData.hyreoSourcedProfiles;
+
+//     // const ctx = document.getElementById("funnelChart").getContext("2d");
+
+//     // new Chart(ctx, {
+//     //     type: "bar",
+//     //     data: {
+//     //         labels: ["Applicants", "Pre-screened", "Shortlisted", "Offered", "Hired"],
+//     //         datasets: [{
+//     //             // axis: 'y',
+//     //             // label: 'My First Dataset',
+//     //             data: [applicants, prescreened, shortlisted, offered, hired],
+//     //             fill: false,
+//     //             backgroundColor: "#5e30c2",
+//     //             formatter: function (value, ctx) {
+//     //                 // ✅ show label ONLY for first bar
+//     //                 return ctx.dataIndex === 0 ? 'My First Dataset' : '';
+//     //             }
+//     //         }]
+//     //     },
+//     //     options: {
+//     //         indexAxis: "y",
+//     //         plugins: { legend: { display: false } },
+//     //         scales: {
+//     //             x: { display: false }
+//     //         }
+//     //     }
+//     // });
+
+//         var options = {
+//           series: [
+//           {
+//             name: "Funnel Series",
+//             data: [1380, 1100, 990, 880, 740, 548, 330, 200],
+//           },
+//         ],
+//           chart: {
+//           type: 'bar',
+//           height: 350,
+//           dropShadow: {
+//             enabled: true,
+//           },
+//         },
+//         plotOptions: {
+//           bar: {
+//             borderRadius: 0,
+//             horizontal: true,
+//             barHeight: '80%',
+//             isFunnel: true,
+//           },
+//         },
+//         dataLabels: {
+//           enabled: true,
+//           formatter: function (val, opt) {
+//             return opt.w.globals.labels[opt.dataPointIndex] + ':  ' + val
+//           },
+//           dropShadow: {
+//             enabled: true,
+//           },
+//         },
+//         title: {
+//           text: 'Recruitment Funnel',
+//           align: 'middle',
+//         },
+//         xaxis: {
+//           categories: [
+//             'Sourced',
+//             'Screened',
+//             'Assessed',
+//             'HR Interview',
+//             'Technical',
+//             'Verify',
+//             'Offered',
+//             'Hired',
+//           ],
+//         },
+//         legend: {
+//           show: false,
+//         },
+//         };
+
+//     var chart = new ApexCharts(document.querySelector("#chart"), options);
+
+//     chart.render();
+// }
+
+function showChart(pipelineData) {
+    $('#chart').html('');
+    const hired = pipelineData.hired;
+    const offered = pipelineData.interviewedCandidatesOffered;
+    const shortlisted = pipelineData.preScreenedCandidatesInterviewed;
+    const prescreened = pipelineData.applicantsPreScreened;
+    const applicants = pipelineData.applicantsResumeMatching;
+    const hyreoSourcedProfiles = pipelineData.hyreoSourcedProfiles;
+
+    var options = {
+        series: [
+            {
+                // name: "Funnel Series",
+                data: [applicants, prescreened, shortlisted, offered, hired],
+            },
+        ],
+        chart: {
+            type: 'bar',
+            height: 350,
+            toolbar: {
+                show: false
+            },
+            dropShadow: {
+                enabled: true,
+            },
+        },
+        plotOptions: {
+            bar: {
+                borderRadius: 0,
+                horizontal: true,
+                barHeight: '80%',
+                isFunnel: true,
+            },
+        },
+        dataLabels: {
+            enabled: true,
+                // formatter: function (value, ctx) {
+                //     // ✅ show label ONLY for first bar
+                //     return ctx.dataIndex === 0 ? 'My First Dataset' : '';
+                // },
+            formatter: function (val, opt) {
+                return opt.w.globals.labels[opt.dataPointIndex] + ':  ' + val
+            },
+            dropShadow: {
+                enabled: true,
+            },
+        },
+        // title: {
+        //   text: 'Recruitment Funnel',
+        //   align: 'middle',
+        // },
+        xaxis: {
+            categories: [
+                'Applicants',
+                'Pre-screened',
+                'Shortlisted',
+                'Offered',
+                'Hired'
+            ],
+        },
+        legend: {
+            show: false,
+        },
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+
+    chart.render();
 }
