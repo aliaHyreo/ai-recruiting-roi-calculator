@@ -978,7 +978,7 @@ function toggleAdjustSidebar() {
     'bg-gradient-to-r from-cyan-400 to-blue-500 text-white border-none shadow-md';
 
     const INACTIVE_CLASSES =
-    'bg-transparent text-gray-500 border border-gray-300 shadow-none';
+    'bg-transparent text-gray-600 border border-gray-300 shadow-none';
     const $btn = $('#adjustBtn');
     const $sidebar = $('#adjustSidebar');
     const $grid = $('#resultsGrid');
@@ -1108,12 +1108,12 @@ function updateRangeFill(rangeInput) {
 
 function showChart(pipelineData) {
     $('#chart').html('');
-    const hired = pipelineData.hired;
-    const offered = pipelineData.interviewedCandidatesOffered;
-    const shortlisted = pipelineData.preScreenedCandidatesInterviewed;
-    const prescreened = pipelineData.applicantsPreScreened;
-    const applicants = pipelineData.applicantsResumeMatching;
-    const hyreoSourcedProfiles = pipelineData.hyreoSourcedProfiles;
+    const hired = humanRound(pipelineData.hired);
+    const offered = humanRound(pipelineData.interviewedCandidatesOffered);
+    const shortlisted = humanRound(pipelineData.preScreenedCandidatesInterviewed);
+    const prescreened = humanRound(pipelineData.applicantsPreScreened);
+    const applicants = humanRound(pipelineData.applicantsResumeMatching);
+    const hyreoSourcedProfiles = humanRound(pipelineData.hyreoSourcedProfiles);
 
     var options = {
         series: [
@@ -1146,11 +1146,34 @@ function showChart(pipelineData) {
                 //     // ✅ show label ONLY for first bar
                 //     return ctx.dataIndex === 0 ? 'My First Dataset' : '';
                 // },
+            background: {
+                enabled: true,
+                foreColor: '#fff',
+                padding: 4,
+                borderRadius: 2,
+                borderWidth: 1,
+                borderColor: '#fff',
+                opacity: 0.9,
+                dropShadow: {
+                    enabled: true,
+                    top: 1,
+                    left: 1,
+                    blur: 1,
+                    color: '#6a7282',
+                    opacity: 0.45
+                }
+            },
+            style: {
+                fontSize: '12px',
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                fontWeight: 'regular',
+                colors: ['#19BF74']
+            },
             formatter: function (val, opt) {
                 return opt.w.globals.labels[opt.dataPointIndex] + ':  ' + val
             },
             dropShadow: {
-                enabled: true,
+                enabled: false,
             },
         },
         // title: {
@@ -1167,7 +1190,7 @@ function showChart(pipelineData) {
             ],
         },
         legend: {
-            show: false,
+            show: true,
         },
     };
 
