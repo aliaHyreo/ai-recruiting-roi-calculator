@@ -1167,7 +1167,7 @@ function showChart(pipelineData) {
                 fontSize: '12px',
                 fontFamily: 'Helvetica, Arial, sans-serif',
                 fontWeight: 'regular',
-                colors: ['#19BF74']
+                colors: ['#168a56ff']
             },
             formatter: function (val, opt) {
                 return opt.w.globals.labels[opt.dataPointIndex] + ':  ' + val
