@@ -1106,8 +1106,14 @@ function updateRangeFill(rangeInput) {
 //     chart.render();
 // }
 
+let funnelChart = null;
 function showChart(pipelineData) {
     $('#chart').html('');
+
+    if (funnelChart) {
+        funnelChart.destroy();
+        funnelChart = null;
+    }
     const hired = humanRound(pipelineData.hired);
     const offered = humanRound(pipelineData.interviewedCandidatesOffered);
     const shortlisted = humanRound(pipelineData.preScreenedCandidatesInterviewed);
@@ -1115,7 +1121,7 @@ function showChart(pipelineData) {
     const applicants = humanRound(pipelineData.applicantsResumeMatching);
     const hyreoSourcedProfiles = humanRound(pipelineData.hyreoSourcedProfiles);
 
-    var options = {
+    let options = {
         series: [
             {
                 // name: "Funnel Series",
@@ -1167,9 +1173,12 @@ function showChart(pipelineData) {
                 fontSize: '12px',
                 fontFamily: 'Helvetica, Arial, sans-serif',
                 fontWeight: 'regular',
-                colors: ['#168a56ff']
+                colors: ['#168a56']
             },
             formatter: function (val, opt) {
+                if (opt.dataPointIndex === 0) {
+                    return `Applicants: ${val}\n(Hyreo: ${humanRound(hyreoSourcedProfiles)})`;
+                }
                 return opt.w.globals.labels[opt.dataPointIndex] + ':  ' + val
             },
             dropShadow: {
@@ -1194,7 +1203,10 @@ function showChart(pipelineData) {
         },
     };
 
-    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    funnelChart = new ApexCharts(
+        document.querySelector("#chart"),
+        options
+    );
 
-    chart.render();
+    funnelChart.render();
 }
