@@ -104,7 +104,7 @@
     </header>
 
     <!-- Info Banner -->
-    <main class="w-full px-10 sm:px-6">
+    <main class="w-full px-3 sm:px-6">
         <div class="flex justify-center gap-3 items-center sm:items-center border-gray-300 text-xs sm:text-sm py-3 sm:py-4 rounded-md mb-5">
             <div onclick="onSelectStepTab('step-1')" id="step-1" class="flex items-center gap-3 px-3 sm:px-6 py-2 rounded-md bg-white select-none">
                 <div class="step-circle w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold text-white backdrop-blur-lg">
@@ -412,18 +412,8 @@
         </div>
 
         <div id="resultsBlock" class="hidden sm:w-full max-w-7xl mx-auto">
-            <!-- <div class="flex justify-center mb-5">
-                <span class="flex items-center justify-center p-4 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#ffffff" viewBox="0 0 256 256"><path d="M152,120H136V56h8a32,32,0,0,1,32,32,8,8,0,0,0,16,0,48.05,48.05,0,0,0-48-48h-8V24a8,8,0,0,0-16,0V40h-8a48,48,0,0,0,0,96h8v64H104a32,32,0,0,1-32-32,8,8,0,0,0-16,0,48.05,48.05,0,0,0,48,48h16v16a8,8,0,0,0,16,0V216h16a48,48,0,0,0,0-96Zm-40,0a32,32,0,0,1,0-64h8v64Zm40,80H136V136h16a32,32,0,0,1,0,64Z"></path></svg>
-                </span>
-            </div>
 
-            <div class="flex flex-col gap-2 justify-center mb-5">
-                <p class="text-xl font-bold text-center">Your ROI Projection</p>
-                <p class="text-md font-regular text-gray-500 text-center">Based on your inputs, here's what you can expect from implementing our platform. These projections are defensible and ready to share with leadership.</p>
-            </div> -->
-
-            <div class="flex flex-col gap-4 justify-between items-start">
+            <div class="flex flex-col gap-4 justify-between items-end">
                 <div class="w-full flex flex-col gap-4 items-center flex-1">
                     <span class="flex items-center justify-center p-4 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#ffffff" viewBox="0 0 256 256"><path d="M152,120H136V56h8a32,32,0,0,1,32,32,8,8,0,0,0,16,0,48.05,48.05,0,0,0-48-48h-8V24a8,8,0,0,0-16,0V40h-8a48,48,0,0,0,0,96h8v64H104a32,32,0,0,1-32-32,8,8,0,0,0-16,0,48.05,48.05,0,0,0,48,48h16v16a8,8,0,0,0,16,0V216h16a48,48,0,0,0,0-96Zm-40,0a32,32,0,0,1,0-64h8v64Zm40,80H136V136h16a32,32,0,0,1,0,64Z"></path></svg>
@@ -434,21 +424,398 @@
                     </div>
                 </div>
                 <div>
-                    <button type="button" id="adjustBtn" class="mt-6 px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-400 to-blue-500 text-white cursor-pointer shadow-sm text-sm font-semibold hover:shadow-md hover:bg-opacity-80 flex items-center gap-2 group transition-all duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sliders-vertical"><line x1="4" x2="4" y1="21" y2="14"></line><line x1="4" x2="4" y1="10" y2="3"></line><line x1="12" x2="12" y1="21" y2="12"></line><line x1="12" x2="12" y1="8" y2="3"></line><line x1="20" x2="20" y1="21" y2="16"></line><line x1="20" x2="20" y1="12" y2="3"></line><line x1="2" x2="6" y1="14" y2="14"></line><line x1="10" x2="14" y1="8" y2="8"></line><line x1="18" x2="22" y1="16" y2="16"></line></svg>
+                    <button type="button" id="adjustBtn" class="px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-400 to-blue-500 text-white cursor-pointer shadow-sm text-sm font-semibold hover:shadow-md hover:bg-opacity-80 flex items-center gap-2 group transition-all duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M64,105V40a8,8,0,0,0-16,0v65a32,32,0,0,0,0,62v49a8,8,0,0,0,16,0V167a32,32,0,0,0,0-62Zm-8,47a16,16,0,1,1,16-16A16,16,0,0,1,56,152Zm80-95V40a8,8,0,0,0-16,0V57a32,32,0,0,0,0,62v97a8,8,0,0,0,16,0V119a32,32,0,0,0,0-62Zm-8,47a16,16,0,1,1,16-16A16,16,0,0,1,128,104Zm104,64a32.06,32.06,0,0,0-24-31V40a8,8,0,0,0-16,0v97a32,32,0,0,0,0,62v17a8,8,0,0,0,16,0V199A32.06,32.06,0,0,0,232,168Zm-32,16a16,16,0,1,1,16-16A16,16,0,0,1,200,184Z"></path></svg>
                         Configure Inputs
                     </button>
                 </div>
             </div>
 
-            <div id="resultsGrid" class="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] grid-rows-auto gap-4 transition-all duration-300">
-                <div id="adjustSidebar" class="hidden">
-                    <div class="bg-white/80 backdrop-blur-md max-w-full min-w-fit mx-auto rounded-xl border border-gray-200 shadow-xl overflow-hidden sticky top-24 mt-6">
+            <div id="resultsGrid" class="grid grid-cols-1 lg:grid-cols-[2.5fr_1fr] grid-rows-auto gap-4 transition-all duration-300">
+                <div class="order-2 md:order-1">
+                    <div class="max-w-full min-w-fit mx-auto mt-6">
+                        <div class="w-full grid grid-cols-1 sm:grid-cols-[1fr_1.5fr] gap-4">
+                            <div>
+                                <div class="bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl p-4 sm:p-5">
+                                <div class="flex items-center gap-2 sm:gap-3">
+                                    <span class="bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg p-2 sm:p-3 flex-shrink-0">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ffffff" viewBox="0 0 256 256" class="sm:w-6 sm:h-6"><path d="M152,116H140V60h4a28,28,0,0,1,28,28,12,12,0,0,0,24,0,52.06,52.06,0,0,0-52-52h-4V24a12,12,0,0,0-24,0V36h-4a52,52,0,0,0,0,104h4v56H104a28,28,0,0,1-28-28,12,12,0,0,0-24,0,52.06,52.06,0,0,0,52,52h12v12a12,12,0,0,0,24,0V220h12a52,52,0,0,0,0-104Zm-40,0a28,28,0,0,1,0-56h4v56Zm40,80H140V140h12a28,28,0,0,1,0,56Z"></path></svg>
+                                    </span>
+                                    <div class="min-w-0 flex-1">
+                                        <p class="text-xs sm:text-sm font-medium text-[#ffffff]">Estimated Annual Investment</p>
+                                        <p class="font-regular mt-1 text-[#ffffff]"> <span class="text-xl sm:text-4xl font-bold" id="estimatedCost">25464</span> <span class="text-xs sm:text-sm">USD/year</span></p>
+                                    </div>
+                                </div>
+
+                                <hr class="mt-4 mb-2 border-[#ffffff]/20">
+        
+                                <div class="flex justify-between text-xs sm:text-sm">
+                                    <span class="text-[#ffffff]">Hyreo Tokens</span>
+                                    <span class="text-[#ffffff] font-bold text-lg" id="hyreoTokens">$2257</span>
+                                </div>
+                                <div class="mt-2 flex justify-between text-xs sm:text-sm">
+                                    <span class="text-[#ffffff]">External Tokens</span>
+                                    <span class="text-[#ffffff] font-bold text-lg" id="externalTokens">$23207</span>
+                                </div>
+
+                                <hr class="my-2 border-[#ffffff]/20">
+
+                                <div class="flex justify-between text-xs sm:text-sm">
+                                    <span class="text-[#ffffff]">Per Job Cost</span>
+                                    <span class="text-[#ffffff] font-bold text-lg" id="perJobCost">$25</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2  grid-rows-auto gap-5 mt-4">
+                                <div class="rounded-xl p-4 border-1 border-[#1fad7233] bg-[#1fad721a] text-[#008046]">
+                                    <div class="flex items-start gap-2 sm:gap-3">
+                                        <div class="min-w-0 flex-1">
+                                            <p class="text-xs font-semibold">Productivity Savings</p>
+                                            <p id="productivity" class="font-semibold text-success text-sm sm:text-lg">$509833</p>
+                                            <p class="text-xs text-gray-500">Potential hours saved</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rounded-xl p-4 border-1 border-[#1fad7233] bg-[#1fad721a] text-[#008046]">
+                                    <div class="flex items-start gap-2 sm:gap-3">
+                                        <div class="min-w-0 flex-1">
+                                            <p class="text-xs font-semibold">Revenue Potential</p>
+                                            <p id="revenue" class="font-semibold text-sm sm:text-lg">$133325</p>
+                                            <p class="text-xs text-gray-500">From faster time-to-productivity</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+
+                            <div class="h-full backdrop-blur-md px-0 sm:px-4 flex flex-col justify-start items-startrounded-xl">
+                                <div class="flex items-center gap-2 mt-8 mb-3 sm:mt-0">
+                                    <span class="bg-[#3ac7f1]/20 backdrop-blur-lg border border-[#3ac7f1]/30 rounded-xl shadow-lg p-2 sm:p-3 flex-shrink-0">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3ac7f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-5 w-5 text-primary"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+                                    </span>
+                                    <div>
+                                        <h3 class="text-md font-semibold">Return on Investment Range</h3>
+                                        <p class="text-sm font-medium text-center">Based on your inputs and assumptions, here's your projected ROI:</p>
+                                    </div>
+                                </div>
+                                <div class="w-full">
+                                    <div class="w-full mt-6 grid grid-cols-1 sm:grid-cols-3 grid-rows-auto gap-4">
+                                        <div class="rounded-lg border-1 border-gray-300 p-3 pt-4 bg-[#eff0f3] text-[#627083]">
+                                            <div class="flex gap-2">
+                                                <span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield h-5 w-5 text-muted-foreground"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg>
+                                                </span>
+                                                <p class="text-sm font-semibold">Conservative</p>
+                                            </div>
+                                            <div class="flex flex-col gap-3 mt-5">
+                                                <h2 id="roi-conservative" class="text-xl sm:text-4xl font-bold">0.1x</h2>
+                                                <p class="text-xs">Conservative case at 70% efficiency gain</p>
+                                            </div>
+                                        </div>
+                                        <div class="rounded-lg border-1 p-3 pt-4 bg-[#3ac7f1]/20 text-cyan-500 relative">
+                                            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full px-3 py-1">
+                                                <p class="text-xs font-semibold text-white">Recommended</p>
+                                            </div>
+                                            <div class="flex gap-2">
+                                                <span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target h-5 w-5 text-primary"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                                                </span>
+                                                <p class="text-sm font-semibold">Realistic</p>
+                                            </div>
+                                            <div class="flex flex-col gap-3 mt-5">
+                                                <h2 id="roi-realistic" class="text-xl sm:text-4xl font-bold">0.1x</h2>
+                                                <p class="text-xs">Benchmarked against similar organizations</p>
+                                            </div>
+                                        </div>
+                                        <div class="rounded-lg border-1 border-[#1fad7233] p-3 pt-4 bg-[#1fad721a] text-[#008046]">
+                                            <div class="flex gap-2">
+                                                <span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rocket h-5 w-5 text-success"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path></svg>
+                                                </span>
+                                                <p class="text-sm font-semibold">Optimistic</p>
+                                            </div>
+                                            <div class="flex flex-col gap-3 mt-5">
+                                                <h2 id="roi-optimistic" class="text-xl sm:text-4xl font-bold">0.2x</h2>
+                                                <p class="text-xs">Optimistic case assuming full adoption</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-xs font-light italic text-left mt-5 pr-12">ROI projections are estimates based on your inputs and industry benchmarks. Actual results may vary based on implementation and adoption.</p>
+                                </div>
+                            </div>
+        
+                        </div>
+        
+                    </div>
+
+                    <div class="max-w-full min-w-fit mx-auto mt-6">
+                        <div class="grid grid-cols-2 sm:grid-cols-5 gap-1 sm:gap-0 rounded-md">
+                            <div style="clip-path: polygon(95% 0, 100% 50%, 95% 100%, 0% 100%, 5% 50%, 0% 0%);" class="flex flex-col justify-between bg-[#3ac7f1]/20 backdrop-blur-lg border border-[#3ac7f1]/30 py-2 pr-4 pl-6 shadow-sm overflow-hidden">
+                                <div class="">
+                                    <p class="text-sm text-gray-500 font-medium">
+                                        Applicants<br>
+                                    </p>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <p id="funnelApplicants" class="font-semibold text-success">82305</p>
+                                    <p class="font-medium text-xs text-success">H: <span id="funnelHyreoSourcedProfiles">411,325</span></p>
+                                </div>
+                            </div>
+                            <div style="clip-path: polygon(95% 0, 100% 50%, 95% 100%, 0% 100%, 5% 50%, 0% 0%);" class="flex flex-col justify-between bg-[#3ac7f1]/20 backdrop-blur-lg border border-[#3ac7f1]/30 py-2 pr-4 pl-6 shadow-lg">
+                                <div class="">
+                                    <p class="text-sm text-gray-500 font-medium">
+                                        Pre-screened
+                                    </p>
+                                </div>
+                                <p id="funnelPrescreened" class="font-semibold text-success">82305</p>
+                            </div>
+                            <div style="clip-path: polygon(95% 0, 100% 50%, 95% 100%, 0% 100%, 5% 50%, 0% 0%);" class="flex flex-col justify-between bg-[#3ac7f1]/20 backdrop-blur-lg border border-[#3ac7f1]/30 py-2 pr-4 pl-6 shadow-lg">
+                                <div class="">
+                                    <p class="text-sm text-gray-500 font-medium">
+                                        Shortlisted
+                                    </p>
+                                </div>
+                                <p id="funnelShortlisted" class="font-semibold text-success">82305</p>
+                            </div>
+                            <div style="clip-path: polygon(95% 0, 100% 50%, 95% 100%, 0% 100%, 5% 50%, 0% 0%);" class="flex flex-col justify-between bg-[#3ac7f1]/20 backdrop-blur-lg border border-[#3ac7f1]/30 py-2 pr-4 pl-6 shadow-lg">
+                                <div class="">
+                                    <p class="text-sm text-gray-500 font-medium">
+                                        Offered
+                                    </p>
+                                </div>
+                                <p id="funnelOffered" class="font-semibold text-success">82305</p>
+                            </div>
+                            <div style="clip-path: polygon(95% 0, 100% 50%, 95% 100%, 0% 100%, 5% 50%, 0% 0%);" class="flex flex-col justify-between bg-[#3ac7f1]/20 backdrop-blur-lg border border-[#3ac7f1]/30 py-2 pr-4 pl-6 shadow-lg">
+                                <div class="">
+                                    <p class="text-sm text-gray-500 font-medium">
+                                        Hired
+                                    </p>
+                                </div>
+                                <p id="funnelHired" class="font-semibold text-success">82305</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="max-w-full min-w-fit mx-auto mt-6">
+                        <div class="w-full grid grid-cols-1 bg-white/80 backdrop-blur-md p-2 sm:p-4 rounded-xl border border-gray-200 shadow-lg">
+                            <div class="flex items-center gap-2 mb-4">
+                                <span class="bg-[#1fad721a] p-1.5 rounded-lg border border-[#1fad7233]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#008046" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                                </span>
+                                <h3 class="text-sm font-semibold text-gray-800">What Hyreo Delivers at Scale</h3>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 grid-rows-auto gap-4 align-center">
+                                <div class="flex flex-col justify-between bg-gradient-to-r from-[#f0fbff] to-[#ffffff] backdrop-blur-md p-4 rounded-xl border border-gray-200">
+                                    <div>
+                                        <span class="p-2 flex items-center rounded-full bg-[#358aee]/10 w-fit">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#358aee" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
+                                        </span> 
+                                        <p class="mt-3 text-sm text-gray-500 font-medium">
+                                            <!-- Profiles auto-sourced -->
+                                            Auto-Sourced Candidates
+                                        </p>
+                                    </div>
+                                    <p id="profilesAutoSourcedImpact" class="font-semibold text-success">82305</p>
+                                </div>
+                                <div class="flex flex-col justify-between bg-gradient-to-r from-[#f4fcff] to-[#ffffff] backdrop-blur-md p-4 rounded-xl border border-gray-200">
+                                    <div>
+                                        <span class="p-2 flex items-center rounded-full bg-[#1d6a88]/10 w-fit">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#1d6a88" viewBox="0 0 256 256"><path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-32-80a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,136Zm0,32a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,168Z"></path></svg>
+                                        </span> 
+                                        <p class="mt-3 text-sm text-gray-500 font-medium">
+                                            <!-- Profiles matched -->
+                                            Qualified Profile Matches
+                                        </p>
+                                    </div>
+                                    <p id="profilesMatchedImpact" class="font-semibold text-success">411523</p>
+                                </div>
+                                <div class="flex flex-col justify-between bg-gradient-to-r from-[#f6fffb] to-[#ffffff] backdrop-blur-md p-4 rounded-xl border border-gray-200">
+                                    <div>
+                                        <span class="p-2 flex items-center rounded-full bg-[#2fad75]/10 w-fit">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2fad75" viewBox="0 0 256 256"><path d="M256,136a8,8,0,0,1-8,8H232v16a8,8,0,0,1-16,0V144H200a8,8,0,0,1,0-16h16V112a8,8,0,0,1,16,0v16h16A8,8,0,0,1,256,136Zm-57.87,58.85a8,8,0,0,1-12.26,10.3C165.75,181.19,138.09,168,108,168s-57.75,13.19-77.87,37.15a8,8,0,0,1-12.25-10.3c14.94-17.78,33.52-30.41,54.17-37.17a68,68,0,1,1,71.9,0C164.6,164.44,183.18,177.07,198.13,194.85ZM108,152a52,52,0,1,0-52-52A52.06,52.06,0,0,0,108,152Z"></path></svg>
+                                        </span> 
+                                        <p class="mt-3 text-sm text-gray-500 font-medium">
+                                            <!-- Prescreening completed -->
+                                            AI Pre-Screenings Completed
+                                        </p>
+                                    </div>
+                                    <p id="prescreeningCompletedImpact" class="font-semibold text-success">61728</p>
+                                </div>
+                                <div class="flex flex-col justify-between bg-gradient-to-r from-[#fffcf8] to-[#ffffff] backdrop-blur-md p-4 rounded-xl border border-gray-200">
+                                    <div>
+                                        <span class="p-2 flex items-center rounded-full bg-[#f09f38]/10 w-fit">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#f09f38" viewBox="0 0 256 256"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-68-76a12,12,0,1,1-12-12A12,12,0,0,1,140,132Zm44,0a12,12,0,1,1-12-12A12,12,0,0,1,184,132ZM96,172a12,12,0,1,1-12-12A12,12,0,0,1,96,172Zm44,0a12,12,0,1,1-12-12A12,12,0,0,1,140,172Zm44,0a12,12,0,1,1-12-12A12,12,0,0,1,184,172Z"></path></svg>
+                                        </span> 
+                                        <p class="mt-3 text-sm text-gray-500 font-medium">
+                                            <!-- Interviews auto-scheduled -->
+                                            Interviews Scheduled Automatically
+                                        </p>
+                                    </div>
+                                    <p id="interviewsAutoScheduledImpact" class="font-semibold text-success">27778</p>
+                                </div>
+                                <div class="flex flex-col justify-between bg-gradient-to-r from-[#f6fffb] to-[#ffffff] backdrop-blur-md p-4 rounded-xl border border-gray-200">
+                                    <div>
+                                        <span class="p-2 flex items-center rounded-full bg-[#2fad75]/10 w-fit">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2fad75" viewBox="0 0 256 256"><path d="M140,128a12,12,0,1,1-12-12A12,12,0,0,1,140,128ZM84,116a12,12,0,1,0,12,12A12,12,0,0,0,84,116Zm88,0a12,12,0,1,0,12,12A12,12,0,0,0,172,116Zm60,12A104,104,0,0,1,79.12,219.82L45.07,231.17a16,16,0,0,1-20.24-20.24l11.35-34.05A104,104,0,1,1,232,128Zm-16,0A88,88,0,1,0,51.81,172.06a8,8,0,0,1,.66,6.54L40,216,77.4,203.53a7.85,7.85,0,0,1,2.53-.42,8,8,0,0,1,4,1.08A88,88,0,0,0,216,128Z"></path></svg>
+                                        </span> 
+                                        <p class="mt-3 text-sm text-gray-500 font-medium">
+                                            <!-- Candidate touchpoints -->
+                                            Candidate Engagement Touchpoints
+                                        </p>
+                                    </div>
+                                    <p id="candidateTouchpointsImpact" class="font-semibold text-success">5726859</p>
+                                </div>
+                                <div class="flex flex-col justify-between bg-gradient-to-r from-[#f6faff] to-[#ffffff] backdrop-blur-md p-4 rounded-xl border border-gray-200">
+                                    <div>
+                                        <span class="p-2 flex items-center rounded-full bg-[#627083]/10 w-fit">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#627083" viewBox="0 0 256 256"><path d="M176,16H80A24,24,0,0,0,56,40V216a24,24,0,0,0,24,24h96a24,24,0,0,0,24-24V40A24,24,0,0,0,176,16ZM72,64H184V192H72Zm8-32h96a8,8,0,0,1,8,8v8H72V40A8,8,0,0,1,80,32Zm96,192H80a8,8,0,0,1-8-8v-8H184v8A8,8,0,0,1,176,224Z"></path></svg>
+                                        </span> 
+                                        <p class="mt-3 text-sm text-gray-500 font-medium">
+                                            <!-- Automated voice calls -->
+                                            Automated Calling Hours
+                                        </p>
+                                    </div>
+                                    <p class="font-semibold text-success"><span id="automatedVoiceCallsImpact">1343</span> hours</p>
+                                </div>
+                                <div class="flex flex-col justify-between bg-gradient-to-r from-[#fff9f9] to-[#ffffff] backdrop-blur-md p-4 rounded-xl border border-gray-200">
+                                    <div>
+                                        <span class="p-2 flex items-center rounded-full bg-[#de3a3a]/10 w-fit">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#de3a3a" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z"></path></svg>
+                                        </span> 
+                                        <p class="mt-3 text-sm text-gray-500 font-medium">
+                                            <!-- Manual effort saved -->
+                                            Manual Hours Eliminated
+                                        </p>
+                                    </div>
+                                    <p class="font-semibold text-success"><span id="manualEffortSavedImpact">318290</span> hours</p>
+                                </div>
+                                <div class="flex flex-col justify-between bg-gradient-to-r from-[#f6fffb] to-[#ffffff] backdrop-blur-md p-4 rounded-xl border border-gray-200">
+                                    <div>
+                                        <span class="p-2 flex items-center rounded-full bg-[#2fad75]/10 w-fit">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2fad75" viewBox="0 0 256 256"><path d="M240,56v64a8,8,0,0,1-16,0V75.31l-82.34,82.35a8,8,0,0,1-11.32,0L96,123.31,29.66,189.66a8,8,0,0,1-11.32-11.32l72-72a8,8,0,0,1,11.32,0L136,140.69,212.69,64H168a8,8,0,0,1,0-16h64A8,8,0,0,1,240,56Z"></path></svg>
+                                        </span> 
+                                        <p class="mt-3 text-sm text-gray-500 font-medium">
+                                            <!-- Productive / Billable time created -->
+                                            Net Productive Hours Created
+                                        </p>
+                                    </div>
+                                    <p class="font-semibold text-success"><span id="productiveBillableTimeCreatedImpact">6666</span> hours</p>
+                                </div>
+                            </div>
+                            <!-- <div id="projectedTalentPipeline" class="bg-white rounded-xl shadow-lg border-1 border-gray-300 p-4 sm:p-5 mt-6">
+                                <div class="flex items-center gap-2 mb-4">
+                                    <span class="bg-[#1fad721a] p-1.5 rounded-lg border border-[#1fad7233]">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#008046" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                                    </span>
+                                    <h3 class="text-sm font-semibold text-gray-800">Projected Talent Pipeline</h3>
+                                </div>
+                                <div class="w-[300px] overflow-x-auto">
+                                    <div id="chart"></div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <!-- Funnel Chart -->
+
+
+                    <!-- <div id="projectedTalentPipeline" class="bg-white rounded-xl shadow-lg border-1 border-gray-300 p-4 sm:p-5 mt-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="bg-[#1fad721a] p-1.5 rounded-lg border border-[#1fad7233]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#008046" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                            </span>
+                            <h3 class="text-sm font-semibold text-gray-800">Projected Talent Pipeline</h3>
+                        </div>
+                        
+                        <div class="flex flex-col items-center justify-center gap-4 mt-4 w-full max-w-2xl mx-auto">
+                            <div class="w-full flex flex-col items-center">
+                                <span class="text-xs font-semibold text-gray-500 mb-1 uppercase tracking-wider">Applicants</span>
+                                <div id="funnelBarApplicants" style="width: 100%" class="h-10 bg-blue-400 rounded-lg flex items-center justify-center shadow-sm relative group cursor-default transition-all hover:scale-[1.01]">
+                                    <span class="font-bold text-white text-sm" id="funnelApplicants">0</span>
+                                </div>
+                                <p class="text-[10px] text-gray-400 mt-1">Hyreo sourced: <span id="funnelHyreoSourcedProfiles" class="font-medium text-gray-600">0</span></p>
+                            </div>
+
+                            <div class="w-full flex flex-col items-center">
+                                <span class="text-xs font-semibold text-gray-500 mb-1 uppercase tracking-wider">Pre-screened</span>
+                                <div id="funnelBarPrescreened" style="width: 85%" class="h-10 bg-cyan-400 rounded-lg flex items-center justify-center shadow-sm transition-all hover:scale-[1.01]">
+                                    <span class="font-bold text-white text-sm" id="funnelPrescreened">0</span>
+                                </div>
+                            </div>
+
+                            <div class="w-full flex flex-col items-center">
+                                <span class="text-xs font-semibold text-gray-500 mb-1 uppercase tracking-wider">Shortlisted</span>
+                                <div id="funnelBarShortlisted" style="width: 70%" class="h-10 bg-teal-400 rounded-lg flex items-center justify-center shadow-sm transition-all hover:scale-[1.01]">
+                                    <span class="font-bold text-white text-sm" id="funnelShortlisted">0</span>
+                                </div>
+                            </div>
+
+                            <div class="w-full flex flex-col items-center">
+                                <span class="text-xs font-semibold text-gray-500 mb-1 uppercase tracking-wider">Offered</span>
+                                <div id="funnelBarOffered" style="width: 55%" class="h-10 bg-green-400 rounded-lg flex items-center justify-center shadow-sm transition-all hover:scale-[1.01]">
+                                    <span class="font-bold text-white text-sm" id="funnelOffered">0</span>
+                                </div>
+                            </div>
+
+                            <div class="w-full flex flex-col items-center">
+                                <span class="text-xs font-semibold text-gray-500 mb-1 uppercase tracking-wider">Hired</span>
+                                <div id="funnelBarHired" style="width: 40%; min-width: 120px;" class="h-10 bg-green-600 rounded-lg flex items-center justify-center shadow-sm transition-all hover:scale-[1.01]">
+                                    <span class="font-bold text-white text-sm" id="funnelHired">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="w-full mx-auto bg-white rounded-lg p-6 border-1 border-gray-300 shadow-md mt-6">
+                        <div class="flex items-center gap-2 mb-4 sm:mb-6">
+                            <span class="p-2 bg-[#1fad721a] rounded-md flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#008046" viewBox="0 0 256 256"><path d="M199,125.31l-49.88-18.39L130.69,57a19.92,19.92,0,0,0-37.38,0L74.92,106.92,25,125.31a19.92,19.92,0,0,0,0,37.38l49.88,18.39L93.31,231a19.92,19.92,0,0,0,37.38,0l18.39-49.88L199,162.69a19.92,19.92,0,0,0,0-37.38Zm-63.38,35.16a12,12,0,0,0-7.11,7.11L112,212.28l-16.47-44.7a12,12,0,0,0-7.11-7.11L43.72,144l44.7-16.47a12,12,0,0,0,7.11-7.11L112,75.72l16.47,44.7a12,12,0,0,0,7.11,7.11L180.28,144ZM140,40a12,12,0,0,1,12-12h12V16a12,12,0,0,1,24,0V28h12a12,12,0,0,1,0,24H188V64a12,12,0,0,1-24,0V52H152A12,12,0,0,1,140,40ZM252,88a12,12,0,0,1-12,12h-4v4a12,12,0,0,1-24,0v-4h-4a12,12,0,0,1,0-24h4V72a12,12,0,0,1,24,0v4h4A12,12,0,0,1,252,88Z"></path></svg>
+                            </span>
+                            <div>
+                                <h2 class="font-semibold text-sm sm:text-base">Impact Visualization</h2>
+                                <p class="text-xs font-light">Platform efficiency gains</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 gap-2 sm:gap-3 text-xs sm:text-sm mt-4">
+                            <div id="profilesAutoSourcedImpactContainer" class="flex justify-between items-start gap-4">
+                                <p class="text-gray-500 font-medium"><span class="inline-block w-[4px] h-[4px] bg-green-500 rounded-full mr-2 p-[4px]"></span> Profiles auto-sourced</p>
+                                <p id="profilesAutoSourcedImpact" class="font-semibold text-success">82305</p>
+                            </div>
+                            <div id="profilesMatchedImpactContainer" class="flex justify-between items-start gap-4">
+                                <p class="text-gray-500 font-medium"><span class="inline-block w-[4px] h-[4px] bg-green-500 rounded-full mr-2 p-[4px]"></span> Profiles matched</p>
+                                <p id="profilesMatchedImpact" class="font-semibold text-success">411523</p>
+                            </div>
+                            <div id="prescreeningCompletedImpactContainer" class="flex justify-between items-start gap-4">
+                                <p class="text-gray-500 font-medium"><span class="inline-block w-[4px] h-[4px] bg-green-500 rounded-full mr-2 p-[4px]"></span> Prescreening completed</p>
+                                <p id="prescreeningCompletedImpact" class="font-semibold text-success">61728</p>
+                            </div>
+                            <div id="interviewsAutoScheduledImpactContainer" class="flex justify-between items-start gap-4">
+                                <p class="text-gray-500 font-medium"><span class="inline-block w-[4px] h-[4px] bg-green-500 rounded-full mr-2 p-[4px]"></span> Interviews auto-scheduled</p>
+                                <p id="interviewsAutoScheduledImpact" class="font-semibold text-success">27778</p>
+                            </div>
+                            <div id="candidateTouchpointsImpactContainer" class="flex justify-between items-start gap-4">
+                                <p class="text-gray-500 font-medium"><span class="inline-block w-[4px] h-[4px] bg-green-500 rounded-full mr-2 p-[4px]"></span> Candidate touchpoints</p>
+                                <p id="candidateTouchpointsImpact" class="font-semibold text-success">5726852</p>
+                            </div>
+                            <div id="automatedVoiceCallsImpactContainer" class="flex justify-between items-start gap-4">
+                                <p class="text-gray-500 font-medium"><span class="inline-block w-[4px] h-[4px] bg-green-500 rounded-full mr-2 p-[4px]"></span> Automated voice calls</p>
+                                <p class="font-semibold text-success"><span id="automatedVoiceCallsImpact">1343</span>h</p>
+                            </div>
+                            <div id="manualEffortSavedImpactContainer" class="flex justify-between items-start gap-4">
+                                <p class="text-gray-500 font-medium"><span class="inline-block w-[4px] h-[4px] bg-green-500 rounded-full mr-2 p-[4px]"></span> Manual effort saved</p>
+                                <p class="font-semibold text-success"><span id="manualEffortSavedImpact">318289</span>h</p>
+                            </div>
+                            <div id="productiveBillableTimeCreatedImpactContainer" class="flex justify-between items-start gap-4">
+                                <p class="text-gray-500 font-medium"><span class="inline-block w-[4px] h-[4px] bg-green-500 rounded-full mr-2 p-[4px]"></span> Productive / Billable time created</p>
+                                <p class="font-semibold text-success"><span id="productiveBillableTimeCreatedImpact" >6667</span>h</p>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <div id="adjustSidebar" class="hidden order-1 md:order-2">
+                    <div class="bg-white/80 backdrop-blur-md max-w-full min-w-fit mx-auto rounded-xl border border-gray-200 shadow-lg overflow-hidden sticky top-24 mt-6">
                         <!-- Header -->
                         <div class="flex items-center justify-between px-4 py-3 bg-gray-50/50 border-b border-gray-100">
                             <div class="flex items-center gap-2">
                                 <span class="flex items-center justify-center text-cyan-600">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sliders-vertical"><line x1="4" x2="4" y1="21" y2="14"></line><line x1="4" x2="4" y1="10" y2="3"></line><line x1="12" x2="12" y1="21" y2="12"></line><line x1="12" x2="12" y1="8" y2="3"></line><line x1="20" x2="20" y1="21" y2="16"></line><line x1="20" x2="20" y1="12" y2="3"></line><line x1="2" x2="6" y1="14" y2="14"></line><line x1="10" x2="14" y1="8" y2="8"></line><line x1="18" x2="22" y1="16" y2="16"></line></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#3ac7f1" viewBox="0 0 256 256"><path d="M64,105V40a8,8,0,0,0-16,0v65a32,32,0,0,0,0,62v49a8,8,0,0,0,16,0V167a32,32,0,0,0,0-62Zm-8,47a16,16,0,1,1,16-16A16,16,0,0,1,56,152Zm80-95V40a8,8,0,0,0-16,0V57a32,32,0,0,0,0,62v97a8,8,0,0,0,16,0V119a32,32,0,0,0,0-62Zm-8,47a16,16,0,1,1,16-16A16,16,0,0,1,128,104Zm104,64a32.06,32.06,0,0,0-24-31V40a8,8,0,0,0-16,0v97a32,32,0,0,0,0,62v17a8,8,0,0,0,16,0V199A32.06,32.06,0,0,0,232,168Zm-32,16a16,16,0,1,1,16-16A16,16,0,0,1,200,184Z"></path></svg>
                                 </span>
                                 <p class="text-sm font-bold text-gray-800">Adjust Parameters</p>
                             </div>
@@ -459,7 +826,6 @@
 
                         <div class="p-4 space-y-4 max-h-[calc(100vh-160px)] overflow-y-auto custom-scrollbar">
                             
-                            <!-- Section: Scale -->
                             <div class="space-y-2">
                                 <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Hiring Scale</p>
                                 <div class="flex items-center justify-between gap-3 bg-gray-50 p-2.5 rounded-lg border border-gray-200">
@@ -470,7 +836,6 @@
 
                             <hr class="border-gray-100">
 
-                            <!-- Section: Assumptions (Collapsible) -->
                             <details class="group [&_summary::-webkit-details-marker]:hidden" open>
                                 <summary class="flex items-center justify-between cursor-pointer py-1 list-none text-xs font-bold text-gray-400 uppercase tracking-wider hover:text-cyan-600 transition-colors">
                                     <span>Funnel Assumptions</span>
@@ -480,7 +845,6 @@
                                 </summary>
                                 <div class="mt-3 space-y-4" id="painPointsBlock_Adjust">
                                     
-                                    <!-- Input Item -->
                                     <div class="space-y-1">
                                         <div class="flex justify-between items-center">
                                             <label class="text-[11px] font-medium text-gray-600">Sourced via Hyreo</label>
@@ -542,7 +906,6 @@
 
                             <hr class="border-gray-100">
 
-                            <!-- Section: Solutions (Collapsible) -->
                              <details class="group [&_summary::-webkit-details-marker]:hidden" open>
                                 <summary class="flex items-center justify-between cursor-pointer py-1 list-none text-xs font-bold text-gray-400 uppercase tracking-wider hover:text-cyan-600 transition-colors">
                                     <span>Active Solutions</span>
@@ -572,10 +935,50 @@
                                         <span class="text-xs font-medium text-gray-700">Post-offer Engage</span>
                                     </label>
                                 </div>
-                             </details>
+                            </details>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="flex justify-center gap-4">
+
+                <button onclick="onSelectStep('step-3')" type="button" class="mt-6 px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-400 to-blue-500 text-white cursor-pointer shadow-sm text-sm font-semibold hover:shadow-md hover:bg-opacity-80 flex items-center gap-2 group">
+                    Download Executive Report
+                    <span>
+                        <svg class="transition-transform duration-200 group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M184.49,136.49l-80,80a12,12,0,0,1-17-17L159,128,87.51,56.49a12,12,0,1,1,17-17l80,80A12,12,0,0,1,184.49,136.49Z"></path></svg>
+                    </span>
+                </button>
+            </div>
+
+            <p class="text-xs font-medium text-center text-gray-500 mt-6 mb-10">This report is ready to share with stakeholders. All projections include transparent assumptions and industry benchmarks.</p>
+        </div>
+
+    </main>
+
+
+
+    <!-- 
+    <div id="resultsBlock" class="hidden sm:w-full max-w-7xl mx-auto">
+
+            <div class="flex flex-col gap-4 justify-between items-end">
+                <div class="w-full flex flex-col gap-4 items-center flex-1">
+                    <span class="flex items-center justify-center p-4 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#ffffff" viewBox="0 0 256 256"><path d="M152,120H136V56h8a32,32,0,0,1,32,32,8,8,0,0,0,16,0,48.05,48.05,0,0,0-48-48h-8V24a8,8,0,0,0-16,0V40h-8a48,48,0,0,0,0,96h8v64H104a32,32,0,0,1-32-32,8,8,0,0,0-16,0,48.05,48.05,0,0,0,48,48h16v16a8,8,0,0,0,16,0V216h16a48,48,0,0,0,0-96Zm-40,0a32,32,0,0,1,0-64h8v64Zm40,80H136V136h16a32,32,0,0,1,0,64Z"></path></svg>
+                    </span>
+                    <div class="flex flex-col justify-center">
+                        <p class="text-xl font-bold text-center">Your ROI Projection</p>
+                        <p class="text-md font-regular text-gray-500 text-center">Based on your inputs, here's what you can expect from implementing our platform. These projections are defensible and ready to share with leadership.</p>
+                    </div>
+                </div>
+                <div>
+                    <button type="button" id="adjustBtn" class="px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-400 to-blue-500 text-white cursor-pointer shadow-sm text-sm font-semibold hover:shadow-md hover:bg-opacity-80 flex items-center gap-2 group transition-all duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sliders-vertical"><line x1="4" x2="4" y1="21" y2="14"></line><line x1="4" x2="4" y1="10" y2="3"></line><line x1="12" x2="12" y1="21" y2="12"></line><line x1="12" x2="12" y1="8" y2="3"></line><line x1="20" x2="20" y1="21" y2="16"></line><line x1="20" x2="20" y1="12" y2="3"></line><line x1="2" x2="6" y1="14" y2="14"></line><line x1="10" x2="14" y1="8" y2="8"></line><line x1="18" x2="22" y1="16" y2="16"></line></svg>
+                        Configure Inputs
+                    </button>
+                </div>
+            </div>
+
+            <div id="resultsGrid" class="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] grid-rows-auto gap-4 transition-all duration-300">
                 <div>
                     <div class="max-w-full min-w-fit mx-auto mt-6">
                         <div class="w-full grid grid-cols-[1fr] sm:grid-cols-[1.5fr_1fr] gap-6">
@@ -589,8 +992,10 @@
                                         <p class="font-regular mt-1 text-[#ffffff]"> <span class="text-xl sm:text-4xl font-bold" id="estimatedCost">25464</span> <span class="text-xs sm:text-sm">USD/year</span></p>
                                     </div>
                                 </div>
+
+                                <hr class="mt-4 mb-2 border-[#ffffff]/20">
         
-                                <div class="mt-4 flex justify-between text-xs sm:text-sm">
+                                <div class="flex justify-between text-xs sm:text-sm">
                                     <span class="text-[#ffffff]">Hyreo Tokens</span>
                                     <span class="text-[#ffffff] font-bold text-lg" id="hyreoTokens">$2257</span>
                                 </div>
@@ -598,7 +1003,10 @@
                                     <span class="text-[#ffffff]">External Tokens</span>
                                     <span class="text-[#ffffff] font-bold text-lg" id="externalTokens">$23207</span>
                                 </div>
-                                <div class="mt-2 flex justify-between text-xs sm:text-sm">
+
+                                <hr class="my-2 border-[#ffffff]/20">
+
+                                <div class="flex justify-between text-xs sm:text-sm">
                                     <span class="text-[#ffffff]">Per Job Cost</span>
                                     <span class="text-[#ffffff] font-bold text-lg" id="perJobCost">$25</span>
                                 </div>
@@ -689,7 +1097,6 @@
                     </div>
                 </div>
                 <div>
-                    <!-- Funnel Chart -->
                     <div id="projectedTalentPipeline" class="bg-white rounded-xl shadow-lg border-1 border-gray-300 p-4 sm:p-5 mt-6">
                         <div class="flex items-center gap-2 mb-4">
                             <span class="bg-[#1fad721a] p-1.5 rounded-lg border border-[#1fad7233]">
@@ -698,12 +1105,11 @@
                             <h3 class="text-sm font-semibold text-gray-800">Projected Talent Pipeline</h3>
                         </div>
                         <div class="w-[300px] overflow-x-auto">
-                            <!-- <canvas id="chart"></canvas> -->
                              <div id="chart"></div>
                         </div>
                     </div>
 
-                    <!-- <div id="projectedTalentPipeline" class="bg-white rounded-xl shadow-lg border-1 border-gray-300 p-4 sm:p-5 mt-6 hidden">
+                    <div id="projectedTalentPipeline" class="bg-white rounded-xl shadow-lg border-1 border-gray-300 p-4 sm:p-5 mt-6">
                         <div class="flex items-center gap-2 mb-4">
                             <span class="bg-[#1fad721a] p-1.5 rounded-lg border border-[#1fad7233]">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#008046" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
@@ -748,7 +1154,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="w-full mx-auto bg-white rounded-lg p-6 border-1 border-gray-300 shadow-md mt-6">
                         <div class="flex items-center gap-2 mb-4 sm:mb-6">
                             <span class="p-2 bg-[#1fad721a] rounded-md flex-shrink-0">
@@ -795,12 +1201,138 @@
                         </div>
                     </div>
                 </div>
+                <div id="adjustSidebar" class="hidden">
+                    <div class="bg-white/80 backdrop-blur-md max-w-full min-w-fit mx-auto rounded-xl border border-gray-200 shadow-xl overflow-hidden sticky top-24 mt-6">
+
+                        <div class="flex items-center justify-between px-4 py-3 bg-gray-50/50 border-b border-gray-100">
+                            <div class="flex items-center gap-2">
+                                <span class="flex items-center justify-center text-cyan-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sliders-vertical"><line x1="4" x2="4" y1="21" y2="14"></line><line x1="4" x2="4" y1="10" y2="3"></line><line x1="12" x2="12" y1="21" y2="12"></line><line x1="12" x2="12" y1="8" y2="3"></line><line x1="20" x2="20" y1="21" y2="16"></line><line x1="20" x2="20" y1="12" y2="3"></line><line x1="2" x2="6" y1="14" y2="14"></line><line x1="10" x2="14" y1="8" y2="8"></line><line x1="18" x2="22" y1="16" y2="16"></line></svg>
+                                </span>
+                                <p class="text-sm font-bold text-gray-800">Adjust Parameters</p>
+                            </div>
+                            <button onclick="toggleAdjustSidebar()" class="text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-full hover:bg-gray-100 cursor-pointer">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                            </button>
+                        </div>
+
+                        <div class="p-4 space-y-4 max-h-[calc(100vh-160px)] overflow-y-auto custom-scrollbar">
+                            
+                            <div class="space-y-2">
+                                <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Hiring Scale</p>
+                                <div class="flex items-center justify-between gap-3 bg-gray-50 p-2.5 rounded-lg border border-gray-200">
+                                    <label for="openPositionsPerYear_Adjust" class="text-xs font-medium text-gray-700">Annual Open Positions</label>
+                                    <input id="openPositionsPerYear_Adjust" type="number" min="10" max="50000" class="w-20 rounded px-2 py-1 text-xs font-semibold text-right border border-gray-300 bg-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all" />
+                                </div>
+                            </div>
+
+                            <hr class="border-gray-100">
+
+                            <details class="group [&_summary::-webkit-details-marker]:hidden" open>
+                                <summary class="flex items-center justify-between cursor-pointer py-1 list-none text-xs font-bold text-gray-400 uppercase tracking-wider hover:text-cyan-600 transition-colors">
+                                    <span>Funnel Assumptions</span>
+                                    <span class="transition group-open:rotate-180">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
+                                    </span>
+                                </summary>
+                                <div class="mt-3 space-y-4" id="painPointsBlock_Adjust">
+                                    
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between items-center">
+                                            <label class="text-[11px] font-medium text-gray-600">Sourced via Hyreo</label>
+                                            <span class="text-[11px] font-bold text-cyan-600"><span id="sourcedViaHyreoTalentNetwork_Adjust">20</span>%</span>
+                                        </div>
+                                        <input id="sourcedViaHyreoTalentNetworkInput_Adjust" type="range" class="range-sm w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-cyan-500" min="1" max="100" />
+                                    </div>
+
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between items-center">
+                                            <label class="text-[11px] font-medium text-gray-600">Resume Matching</label>
+                                            <span class="text-[11px] font-bold text-cyan-600"><span id="applicantsResumeMatching_Adjust">100</span>%</span>
+                                        </div>
+                                        <input id="applicantsResumeMatchingInput_Adjust" type="range" class="range-sm w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-cyan-500" min="1" max="100" />
+                                    </div>
+
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between items-center">
+                                            <label class="text-[11px] font-medium text-gray-600">Pre-screened</label>
+                                            <span class="text-[11px] font-bold text-cyan-600"><span id="applicantsPreScreened_Adjust">15</span>%</span>
+                                        </div>
+                                        <input id="applicantsPreScreenedInput_Adjust" type="range" class="range-sm w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-cyan-500" min="1" max="100" />
+                                    </div>
+
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between items-center">
+                                            <label class="text-[11px] font-medium text-gray-600">Interviewed</label>
+                                            <span class="text-[11px] font-bold text-cyan-600"><span id="preScreenedCandidatesInterviewed_Adjust">15</span>%</span>
+                                        </div>
+                                        <input id="preScreenedCandidatesInterviewedInput_Adjust" type="range" class="range-sm w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-cyan-500" min="1" max="100" />
+                                    </div>
+
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between items-center">
+                                            <label class="text-[11px] font-medium text-gray-600">Interview Rounds</label>
+                                            <span class="text-[11px] font-bold text-cyan-600"><span id="interviewRounds_Adjust">3</span></span>
+                                        </div>
+                                        <input id="interviewRoundsInput_Adjust" type="range" class="range-sm w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-cyan-500" min="1" max="10" />
+                                    </div>
+
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between items-center">
+                                            <label class="text-[11px] font-medium text-gray-600">Offered</label>
+                                            <span class="text-[11px] font-bold text-cyan-600"><span id="interviewedCandidatesOffered_Adjust">15</span>%</span>
+                                        </div>
+                                        <input id="interviewedCandidatesOfferedInput_Adjust" type="range" class="range-sm w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-cyan-500" min="1" max="100" />
+                                    </div>
+
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between items-center">
+                                            <label class="text-[11px] font-medium text-gray-600">Offer Conversion</label>
+                                            <span class="text-[11px] font-bold text-cyan-600"><span id="offerConfirmation_Adjust">72</span>%</span>
+                                        </div>
+                                        <input id="offerConfirmationInput_Adjust" type="range" class="range-sm w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-cyan-500" min="1" max="100" />
+                                    </div>
+                                    
+                                </div>
+                            </details>
+
+                            <hr class="border-gray-100">
+
+                             <details class="group [&_summary::-webkit-details-marker]:hidden" open>
+                                <summary class="flex items-center justify-between cursor-pointer py-1 list-none text-xs font-bold text-gray-400 uppercase tracking-wider hover:text-cyan-600 transition-colors">
+                                    <span>Active Solutions</span>
+                                    <span class="transition group-open:rotate-180">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
+                                    </span>
+                                </summary>
+                                <div class="mt-3 space-y-2" id="solutionsBlock_Adjust">
+                                    <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors border border-transparent hover:border-gray-100">
+                                        <input id="hyreoTalentNetworkCheckBox_Adjust" type="checkbox" class="w-4 h-4 rounded border-gray-300 text-cyan-500 focus:ring-cyan-500 accent-cyan-500" checked />
+                                        <span class="text-xs font-medium text-gray-700">Hyreo Talent Network</span>
+                                    </label>
+                                    <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors border border-transparent hover:border-gray-100">
+                                        <input id="automatedResumeMatchingWithJdCheckBox_Adjust" type="checkbox" class="w-4 h-4 rounded border-gray-300 text-cyan-500 focus:ring-cyan-500 accent-cyan-500" checked />
+                                        <span class="text-xs font-medium text-gray-700">Resume Matching</span>
+                                    </label>
+                                    <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors border border-transparent hover:border-gray-100">
+                                        <input id="preScreeningWithAiAgentsCheckBox_Adjust" type="checkbox" class="w-4 h-4 rounded border-gray-300 text-cyan-500 focus:ring-cyan-500 accent-cyan-500" checked />
+                                        <span class="text-xs font-medium text-gray-700">Pre-screen Agents</span>
+                                    </label>
+                                    <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors border border-transparent hover:border-gray-100">
+                                        <input id="automatedInterviewSchedulerCheckBox_Adjust" type="checkbox" class="w-4 h-4 rounded border-gray-300 text-cyan-500 focus:ring-cyan-500 accent-cyan-500" checked />
+                                        <span class="text-xs font-medium text-gray-700">Auto Scheduler</span>
+                                    </label>
+                                    <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors border border-transparent hover:border-gray-100">
+                                        <input id="postOfferCandidatesEngagementCheckBox_Adjust" type="checkbox" class="w-4 h-4 rounded border-gray-300 text-cyan-500 focus:ring-cyan-500 accent-cyan-500" checked />
+                                        <span class="text-xs font-medium text-gray-700">Post-offer Engage</span>
+                                    </label>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="flex justify-center gap-4">
-        
-                <!-- <button onclick="onSelectStep('step-2')" type="button" class="mt-6 px-4 py-2 rounded-lg bg-gray-200 text-gray-500 font-semibold text-sm cursor-pointer hover:bg-gray-300 transition-all duration-200">
-                    Back
-                </button> -->
 
                 <button onclick="onSelectStep('step-3')" type="button" class="mt-6 px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-400 to-blue-500 text-white cursor-pointer shadow-sm text-sm font-semibold hover:shadow-md hover:bg-opacity-80 flex items-center gap-2 group">
                     Download Executive Report
@@ -812,13 +1344,15 @@
 
             <p class="text-xs font-medium text-center text-gray-500 mt-6 mb-10">This report is ready to share with stakeholders. All projections include transparent assumptions and industry benchmarks.</p>
         </div>
-
-    </main>
-
+    -->
 
 
 
 
+
+
+
+    
 
 
 

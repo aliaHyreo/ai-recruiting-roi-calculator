@@ -947,8 +947,19 @@ function updateFunnelChart() {
     // mainData.openPositionsPerYear should be up to date.
 
     const pipelineData = getProjectedTalentPipelineValues(mainData.openPositionsPerYear || 0);
-
-    showChart(pipelineData);
+    const hired = humanRound(pipelineData.hired);
+    const offered = humanRound(pipelineData.interviewedCandidatesOffered);
+    const shortlisted = humanRound(pipelineData.preScreenedCandidatesInterviewed);
+    const prescreened = humanRound(pipelineData.applicantsPreScreened);
+    const applicants = humanRound(pipelineData.applicantsResumeMatching);
+    const hyreoSourcedProfiles = humanRound(pipelineData.hyreoSourcedProfiles);
+    $('#funnelApplicants').text(parseInt(applicants).toLocaleString());
+    $('#funnelPrescreened').text(parseInt(prescreened).toLocaleString());
+    $('#funnelShortlisted').text(parseInt(shortlisted).toLocaleString());
+    $('#funnelOffered').text(parseInt(offered).toLocaleString());
+    $('#funnelHired').text(parseInt(hired).toLocaleString());
+    $('#funnelHyreoSourcedProfiles').text(parseInt(hyreoSourcedProfiles).toLocaleString());
+    // showChart(pipelineData);
 
     // Update Text
     // $('#funnelApplicants').text(parseInt(applicants).toLocaleString());
@@ -993,7 +1004,7 @@ function toggleAdjustSidebar() {
         // Original was: lg:grid-cols-[1.5fr_1fr]
         // With Sidebar: lg:grid-cols-[1fr_1.5fr_1fr]
 
-        $grid.removeClass('lg:grid-cols-[1.5fr_1fr]').addClass('lg:grid-cols-[1fr_1.5fr_1fr]');
+        $grid.removeClass('lg:grid-cols-1').addClass('lg:grid-cols-[2.5fr_1fr]');
 
     } else {
         // Hide Sidebar
@@ -1001,7 +1012,7 @@ function toggleAdjustSidebar() {
             .removeClass(ACTIVE_CLASSES)
             .addClass(INACTIVE_CLASSES);
         $sidebar.addClass('hidden');
-        $grid.removeClass('lg:grid-cols-[1fr_1.5fr_1fr]').addClass('lg:grid-cols-[1.5fr_1fr]');
+        $grid.removeClass('lg:grid-cols-[2.5fr_1fr]').addClass('lg:grid-cols-1');
     }
 }
 
