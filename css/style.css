@@ -313,6 +313,12 @@ body {
   gap: var(--hx-space-sm);
 }
 
+.bg-funnel {
+  background-image: url("../images/bg-funnel.png");
+  background-size: cover;
+  background-position: top;
+}
+
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
