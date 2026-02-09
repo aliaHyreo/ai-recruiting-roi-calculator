@@ -29,6 +29,13 @@ const inactiveClasses = {
 // });
 
 $(document).ready(function () {
+    // Disclaimer Modal Logic
+    $('#closeDisclaimerBtn').on('click', function() {
+        $('#disclaimerModal').fadeOut(300, function() {
+            $(this).remove();
+        });
+    });
+
     globalThis.getMainData().then(function (data) {
         console.log('mainData ready:', data);
         mainData = data;
@@ -303,6 +310,10 @@ $('#postOfferCandidatesEngagementCheckBox').on('change', function () {
     mainData.checkboxPostOfferCandidateEngagement = isChecked;
     Calculations();
 });
+
+function onSelectHome() {
+    window.location.reload();
+}
 
 function Calculations() {
     // ROI Automation
@@ -588,6 +599,7 @@ function Calculations() {
 
     mainData.productivity = humanRound(mainData.totalSavingsPreOfferUsd + mainData.effortSavedPofuTotalInUsd + mainData.effortSavedOfferRolloutTotalSavings + mainData.effortSavedHiringManagerTotalInUsd + mainData.automatedCostSavedUsd);
     mainData.revenue = humanRound(mainData.realisedRevenueTotalOpportunityCostSaved);
+    mainData.estimatedSave = humanRound(mainData.productivity + mainData.revenue);
     mainData.roi = humanRound(mainData.productivity / (mainData.hyreoTokens + mainData.externalTokens));
 
     mainData.roiOptimistic = mainData.roi;
@@ -647,6 +659,7 @@ function Calculations() {
     animateValue('#perJobCost', humanRound(mainData.perJobCost), { prefix: '$', duration: 600 });
     animateValue('#productivity', mainData.productivity, { prefix: '$', duration: 700 });
     animateValue('#revenue', mainData.revenue, { prefix: '$', duration: 700 });
+    animateValue('#estimatedSave', mainData.estimatedSave, { prefix: '$', duration: 700 });
     animateValue('#roi', mainData.roi, { hasX: true, duration: 800, easing: 'easeOutExpo' });
     animateValue('#roi-optimistic', mainData.roiOptimistic, { hasX: true, duration: 800, easing: 'easeOutExpo' });
     animateValue('#roi-realistic', mainData.roiRealistic, { hasX: true, duration: 800, easing: 'easeOutExpo' });
@@ -724,7 +737,7 @@ function onSelectOpenPositionsPerYear(value) {
     getProjectedTalentPipelineValues(mainData.openPositionsPerYear);
     Calculations();
 
-    if ([50, 100, 250, 300, 400, 500, 1000].includes(Number(value))) {
+    if ([50, 100, 500, 1000, 3000, 5000, 10000].includes(Number(value))) {
         $(`.op-btn[value="${value}"]`)
             .removeClass('bg-gray-100 text-gray-500')
             .addClass('bg-gradient-to-r from-cyan-400 to-blue-500 text-white');
@@ -773,6 +786,7 @@ function onSelectStep(stepId) {
         $('#currentStateBlock').addClass('hidden');
         $('#solutionsBlock').removeClass('hidden');
     } else if (stepId == 'step-3') {
+        $('#disclaimerModal').removeClass('hidden');
         const animatedSelectors = [
             '#hyreoTokens', '#externalTokens', '#estimatedCost', '#perJobCost',
             '#productivity', '#revenue',
@@ -796,6 +810,9 @@ function onSelectStep(stepId) {
         $('#currentStateBlock').addClass('hidden');
         $('#resultsBlock').removeClass('hidden');
         toggleAdjustSidebar();
+        setTimeout(() => {
+            toggleAdjustSidebar();
+        }, 200);
     }
     $('html, body').animate(
         {
