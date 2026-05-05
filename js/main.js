@@ -445,7 +445,7 @@ function Calculations() {
     }
 
     if (mainData.checkboxAutomatedInterviewScheduler) {
-        mainData.externalTokensSchedulerVariableCost = roundDecimal(mainData.shortlistedForInterviews * mainData.costPerCandidateInterview);
+        mainData.externalTokensSchedulerVariableCost = roundDecimal(mainData.shortlistedForInterviews * mainData.costPerCandidateInterview * mainData.numberOfInterviews);
         mainData.externalTokensSchedulerFinalCost = roundDecimal(mainData.externalTokensSchedulerVariableCost * (1 + (mainData.externalTokensSchedulerPercentage / 100)));
 
         mainData.averageNoOfInterviewsScheduledIncludingMultipleRounds = mainData.shortlistedForInterviews * mainData.numberOfInterviews;
